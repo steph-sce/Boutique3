@@ -1,0 +1,43 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+
+<h1>Je suis dans la page qui fait produit_show</h1>
+
+
+{% for pdt in produits %}
+<div class="col-md-3">
+  <div class="row">
+    <div class="thumbnail">
+      <img class="card-img-top" src={{ asset('/photo/' ~ pdt.photo) }} alt="">
+      <div class="caption">
+        <h3>{{ pdt.description }}</h3>
+        <p><u>Catégorie</u> : {{ pdt.categorie }}</p>
+        <p><u>Couleur</u> : {{ pdt.couleur }}</p>
+        <p><u>Taille</u> : {{ pdt.taille }}</p>
+        <h4>{{ pdt.prix | number_format(2, ',', '')}}€</h4>
+        {% if pdt.stock > 0 %}
+        <form method="post" action="panier.php">
+          {# <input type="hidden" name="id_produit" value=""> #}
+          <select name="quantite" class="custom-select col-sm-2">
+            {% for i in 1..5 if i <= pdt.stock %} <option>{{ i }}</option>
+              {% endfor %}
+          </select>
+          <input type="submit" name="ajout_panier" value="Ajouter au panier" class="btn btn-primary">
+          {% else %}
+          <!-- Fin du if -->
+          <strong>Produit en rupture de stock !</strong>
+          {% endif %}
+        </form>
+        <p>Nombre de produit(s) disponible(s) : <strong>{{ pdt.stock }}</strong></p>
+        <p>{{ pdt.stock == 0 ? 'Produit en rupture de stock !' : 'Produit en stock !' }}</p>        
+        <p><a href="{{ path('categorie', {'categorie' : pdt.categorie}) }}" class="btn btn-primary" role="button">Retour vers la catégorie {{ pdt.categorie }}</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+
+{% endblock %}

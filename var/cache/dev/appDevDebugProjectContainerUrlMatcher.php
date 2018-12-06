@@ -107,6 +107,83 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
         }
 
+        elseif (0 === strpos($pathinfo, '/admin')) {
+            if (0 === strpos($pathinfo, '/admin/produit')) {
+                // produit_show
+                if ('/admin/produit/show' === $pathinfo) {
+                    return array (  '_controller' => 'BoutiqueBundle\\Controller\\AdminController::produitShowAction',  '_route' => 'produit_show',);
+                }
+
+                // produit_delete
+                if (0 === strpos($pathinfo, '/admin/produit/delete') && preg_match('#^/admin/produit/delete/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'produit_delete')), array (  '_controller' => 'BoutiqueBundle\\Controller\\AdminController::produitDeleteAction',));
+                }
+
+                // produit_update
+                if (0 === strpos($pathinfo, '/admin/produit/update') && preg_match('#^/admin/produit/update/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'produit_update')), array (  '_controller' => 'BoutiqueBundle\\Controller\\AdminController::produitUpdateAction',));
+                }
+
+                // produit_add
+                if ('/admin/produit/add' === $pathinfo) {
+                    return array (  '_controller' => 'BoutiqueBundle\\Controller\\AdminController::produitAddAction',  '_route' => 'produit_add',);
+                }
+
+            }
+
+            elseif (0 === strpos($pathinfo, '/admin/membre')) {
+                // membre_show
+                if ('/admin/membre/show' === $pathinfo) {
+                    return array (  '_controller' => 'BoutiqueBundle\\Controller\\AdminController::membreShowAction',  '_route' => 'membre_show',);
+                }
+
+                // membre_profil
+                if (0 === strpos($pathinfo, '/admin/membre/profil') && preg_match('#^/admin/membre/profil/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'membre_profil')), array (  '_controller' => 'BoutiqueBundle\\Controller\\AdminController::membreProfilAction',));
+                }
+
+                // membre_delete
+                if (0 === strpos($pathinfo, '/admin/membre/delete') && preg_match('#^/admin/membre/delete/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'membre_delete')), array (  '_controller' => 'BoutiqueBundle\\Controller\\AdminController::membreDeleteAction',));
+                }
+
+                // membre_update
+                if (0 === strpos($pathinfo, '/admin/membre/update') && preg_match('#^/admin/membre/update/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'membre_update')), array (  '_controller' => 'BoutiqueBundle\\Controller\\AdminController::membreUpdateAction',));
+                }
+
+                // membre_add
+                if ('/admin/membre/add' === $pathinfo) {
+                    return array (  '_controller' => 'BoutiqueBundle\\Controller\\AdminController::membreAddAction',  '_route' => 'membre_add',);
+                }
+
+            }
+
+            elseif (0 === strpos($pathinfo, '/admin/commande')) {
+                // commande_show
+                if ('/admin/commande/show' === $pathinfo) {
+                    return array (  '_controller' => 'BoutiqueBundle\\Controller\\AdminController::commandeShowAction',  '_route' => 'commande_show',);
+                }
+
+                // commande_delete
+                if (0 === strpos($pathinfo, '/admin/commande/delete') && preg_match('#^/admin/commande/delete/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'commande_delete')), array (  '_controller' => 'BoutiqueBundle\\Controller\\AdminController::commandeDeleteAction',));
+                }
+
+                // commande_update
+                if (0 === strpos($pathinfo, '/admin/commande/update') && preg_match('#^/admin/commande/update/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'commande_update')), array (  '_controller' => 'BoutiqueBundle\\Controller\\AdminController::commandeUpdateAction',));
+                }
+
+                // commande_add
+                if ('/admin/commande/add' === $pathinfo) {
+                    return array (  '_controller' => 'BoutiqueBundle\\Controller\\AdminController::commandeAddAction',  '_route' => 'commande_add',);
+                }
+
+            }
+
+        }
+
         // accueil
         if ('' === $trimmedPathinfo) {
             $ret = array (  '_controller' => 'BoutiqueBundle\\Controller\\ProduitController::indexAction',  '_route' => 'accueil',);

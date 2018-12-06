@@ -15,7 +15,7 @@
     <div class="row">
       {% for pdt in produits %}
       <div class="col-sm-4 mb-4">
-        <div class="card">
+        <div class="thumbnail">
           <a href="{{ path('produit', {'id' : pdt.idProduit}) }}">
             <img src={{ asset('/photo/' ~ pdt.photo) }} alt="" class="card-img-top">
           </a>
