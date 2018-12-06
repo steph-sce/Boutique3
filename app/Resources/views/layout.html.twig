@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+	<title>Ma Boutique - {% block title %}{% endblock %}</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
+</head>
+<body>
+	<!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <!-- La marque -->
+        <a class="navbar-brand" href="{{ path('accueil') }}">MA BOUTIQUE</a>
+       
+        <!-- Le burger -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav1" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>        
+        
+        <!-- Le menu -->
+        <div class="collapse navbar-collapse" id="nav1">	
+			<ul class="navbar-nav ml-auto">	
+	
+				<li><a class="nav-link" href="">Profil</a></li>
+				<li><a class="nav-link" href="">Deconnexion</a></li>
+				
+				<li><a class="nav-link" href="">Connexion</a></li>
+				<li><a class="nav-link" href="">Inscription</a></li>
+				
+				<li><a class="nav-link" href="">Boutique</a></li>
+
+			</ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Page Content -->
+    <div class="container" style="min-height: 80vh;">
+      <div class="row">
+        <div class="col-12">
+              <!-- ici le contenu spécifique de chaque page --> 
+
+          {% block content %}
+          {% endblock %}
+
+			  </div><!-- .col-12  -->
+      </div><!-- .row -->
+    </div><!-- .container -->     
+    <!-- footer -->
+    <div class="container">
+    <hr>
+		<footer>
+      <div class="row text-center">
+        <div class="col">
+          <p>Copyright &copy; Ma Boutique - 2018</p>
+        </div>
+      </div>
+    </footer>
+		
+    </div><!-- .container -->     
+</body>
+</html>    
+ 
