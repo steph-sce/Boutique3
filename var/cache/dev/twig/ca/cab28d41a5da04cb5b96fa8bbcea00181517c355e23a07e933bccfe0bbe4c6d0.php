@@ -64,11 +64,8 @@ class __TwigTemplate_5f9cda0f8d6ff4d57414fdfe4bd654a6f52236eca4d903e133bed81512f
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "content"));
 
-        // line 6
-        echo "<h1 class=\"mt-4\">";
-        echo twig_escape_filter($this->env, ($context["title"] ?? $this->getContext($context, "title")), "html", null, true);
-        echo "</h1>
-<div class=\"row\">
+        // line 7
+        echo "<div class=\"row\">
   <div class=\"col-md-3\">
     <a href=\"";
         // line 9
@@ -77,18 +74,18 @@ class __TwigTemplate_5f9cda0f8d6ff4d57414fdfe4bd654a6f52236eca4d903e133bed81512f
     ";
         // line 10
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable(($context["categories"] ?? $this->getContext($context, "categories")));
-        foreach ($context['_seq'] as $context["_key"] => $context["cat"]) {
+        $context['_seq'] = twig_ensure_traversable(($context["references"] ?? $this->getContext($context, "references")));
+        foreach ($context['_seq'] as $context["_key"] => $context["ref"]) {
             // line 11
             echo "    <a href=\"";
-            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("categorie", array("categorie" => $this->getAttribute($context["cat"], "categorie", array()))), "html", null, true);
+            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("categorie", array("categorie" => $this->getAttribute($context["ref"], "reference", array()))), "html", null, true);
             echo "\" class=\"list-group-item list-group-item-action\">";
-            echo twig_escape_filter($this->env, twig_capitalize_string_filter($this->env, $this->getAttribute($context["cat"], "categorie", array())), "html", null, true);
+            echo twig_escape_filter($this->env, twig_capitalize_string_filter($this->env, $this->getAttribute($context["ref"], "reference", array())), "html", null, true);
             echo "</a>
     ";
         }
         $_parent = $context['_parent'];
-        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['cat'], $context['_parent'], $context['loop']);
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['ref'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
         // line 13
         echo "  </div>
@@ -158,7 +155,7 @@ class __TwigTemplate_5f9cda0f8d6ff4d57414fdfe4bd654a6f52236eca4d903e133bed81512f
 
     public function getDebugInfo()
     {
-        return array (  137 => 31,  125 => 25,  121 => 24,  117 => 23,  111 => 20,  107 => 19,  103 => 17,  99 => 16,  94 => 13,  83 => 11,  79 => 10,  75 => 9,  68 => 6,  59 => 5,  41 => 3,  11 => 1,);
+        return array (  134 => 31,  122 => 25,  118 => 24,  114 => 23,  108 => 20,  104 => 19,  100 => 17,  96 => 16,  91 => 13,  80 => 11,  76 => 10,  72 => 9,  68 => 7,  59 => 5,  41 => 3,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -176,12 +173,12 @@ class __TwigTemplate_5f9cda0f8d6ff4d57414fdfe4bd654a6f52236eca4d903e133bed81512f
 {% block title %}{{ title }}{% endblock %}
 
 {% block content %}
-<h1 class=\"mt-4\">{{ title }}</h1>
+{# <h1 class=\"mt-4\">{{ title }}</h1> #}
 <div class=\"row\">
   <div class=\"col-md-3\">
     <a href=\"{{ path('accueil') }}\" class=\"list-group-item\">Tous</a>
-    {% for cat in categories %}
-    <a href=\"{{ path('categorie', {'categorie' : cat.categorie}) }}\" class=\"list-group-item list-group-item-action\">{{ cat.categorie | capitalize }}</a>
+    {% for ref in references %}
+    <a href=\"{{ path('categorie', {'categorie' : ref.reference}) }}\" class=\"list-group-item list-group-item-action\">{{ ref.reference | capitalize }}</a>
     {% endfor %}
   </div>
   <div class=\"col-md-9\">

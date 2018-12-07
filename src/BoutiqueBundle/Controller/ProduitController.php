@@ -2,9 +2,10 @@
 
 namespace BoutiqueBundle\Controller;
 
+use BoutiqueBundle\Entity\Produit;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundationn\Request;
+use Symfony\Component\HttpFoundation\Request;
 
 class ProduitController extends Controller
 {
@@ -16,53 +17,13 @@ class ProduitController extends Controller
     {
         //1: Récupérer les infos des produits
         //SELECT * FROM Produit
-        $produits = array(
-            0 => array(
-                'idProduit' => 1,
-                'reference' => 'ABC',
-                'categorie' => 't-shirt',
-                'titre' => 'Super T-shirt',
-                'description' => 'Ce t-shirt est idéal pour l\'été',
-                'public' => 'm',
-                'prix' => 25.90,
-                'stock' => 150,
-                'photo' => 'tshirt.jpg',
-                'couleur' => 'rouge',
-                'taille' => 'XL',
-            ),
-            1 => array(
-                'idProduit' => 2,
-                'reference' => 'DEF',
-                'categorie' => 'robe',
-                'titre' => 'Super robe',
-                'description' => 'Super petite robe noire',
-                'public' => 'f',
-                'prix' => 79.90,
-                'stock' => 100,
-                'photo' => 'robe.jpg',
-                'couleur' => 'noir',
-                'taille' => 'M',
-            ),
-        );
+        $em = $this->getDoctrine()->getManager();
+        $produits = $em->getRepository('BoutiqueBundle:Produit')->findAll();
 
-        //2: Récupérer toutes les catégories
-        //SELECT DISTINCT categorie FROM produit
-        $categories = array(
-            0 => array(
-                'categorie' => 't-shirt',
-            ),
-            1 => array(
-                'categorie' => 'robe',
-            ),
-        );
-
-        //3: Rend une vue (on transmet à la vue les infos)
         $params = array(
             'produits' => $produits,
-            'categories' => $categories,
+            'references' => $produits,
             'title' => 'Page d\'accueil',
-            // 'css' => 'fichier.css',
-            // 'js' => 'fichier.js'
         );
 
         return $this->render('@Boutique/Produit/index.html.twig', $params);
@@ -82,37 +43,48 @@ class ProduitController extends Controller
 
         //3 Transmettre les datas à une vue qui sera rendue
 
-        $produits = array(
-            0 => array(
-                'idProduit' => 1,
-                'reference' => 'ABC',
-                'categorie' => 't-shirt',
-                'titre' => 'Super T-shirt',
-                'description' => 'Ce t-shirt est idéal pour l\'été',
-                'public' => 'm',
-                'prix' => 25.90,
-                'stock' => 150,
-                'photo' => 'tshirt.jpg',
-                'couleur' => 'rouge',
-                'taille' => 'XL',
-            ),
-        );
+        // $produits = array(
+        //     0 => array(
+        //         'idProduit' => 1,
+        //         'reference' => 'ABC',
+        //         'categorie' => 't-shirt',
+        //         'titre' => 'Super T-shirt',
+        //         'description' => 'Ce t-shirt est idéal pour l\'été',
+        //         'public' => 'm',
+        //         'prix' => 25.90,
+        //         'stock' => 150,
+        //         'photo' => 'tshirt.jpg',
+        //         'couleur' => 'rouge',
+        //         'taille' => 'XL',
+        //     ),
+        // );
 
-        //2: Récupérer toutes les catégories
-        //SELECT DISTINCT categorie FROM produit
-        $categories = array(
-            0 => array(
-                'categorie' => $categorie,
-            ),
-        );
+        // //2: Récupérer toutes les catégories
+        // //SELECT DISTINCT categorie FROM produit
+        // $categories = array(
+        //     0 => array(
+        //         'categorie' => $categorie,
+        //     ),
+        // );
 
-        //3: Rend une vue (on transmet à la vue les infos)
+        // //3: Rend une vue (on transmet à la vue les infos)
+        // $params = array(
+        //     'produits' => $produits,
+        //     'categories' => $categories,
+        //     'title' => 'categorie : '. $categorie,
+        //     // 'css' => 'fichier.css',
+        //     // 'js' => 'fichier.js'
+        // );
+
+        $em = $this->getDoctrine()->getManager();
+        $reference = $em->getRepository('BoutiqueBundle:Produit')->findBy(array(
+            'reference' => $categorie
+        ));
+
         $params = array(
-            'produits' => $produits,
-            'categories' => $categories,
-            'title' => 'categorie : '. $categorie,
-            // 'css' => 'fichier.css',
-            // 'js' => 'fichier.js'
+            'produits' => $reference,
+            'references' => $reference,
+            'title' => 'Categorie: ' . $categorie,
         );
 
         return $this->render('@Boutique/Produit/index.html.twig', $params);
@@ -124,49 +96,59 @@ class ProduitController extends Controller
      */
     public function produitAction($id)
     {
-        //1 : Récupérer un produit grâce à son $id
-        // SELECT * FROM produit WHERE idProduit = $id
-        // Faux array avec un seul produit
+        $em = $this->getDoctrine()->getManager();
+        $produits = $em->getRepository('BoutiqueBundle:Produit')->find($id);
 
-        //2 : Transmettre les données à une vue qui va être rendue.
-        // produit.html.twig = http://www.sharemycode.fr/produit
-
-        //3 : Transformer la vue HTML en TWIG (héritage et block et variable)
-
-        $produits = array(
-            0 => array(
-                'idProduit' => 1,
-                'reference' => 'ABC',
-                'categorie' => 'robe',
-                'titre' => 'Super robe',
-                'description' => 'Cette robe est idéal pour l\'été',
-                'public' => 'm',
-                'prix' => 25.90,
-                'stock' => 150,
-                'photo' => 'robe.jpg',
-                'couleur' => 'rouge',
-                'taille' => 'M',
-            ),
-        );
-
-        //2: Récupérer toutes les catégories
-        //SELECT DISTINCT categorie FROM produit
-        $categories = array(
-            0 => array(
-                'categorie' => $id,
-            ),
-        );
-
-        //3: Rend une vue (on transmet à la vue les infos)
         $params = array(
             'produits' => $produits,
-            'categories' => $categories,
-            'title' => 'Produit : ' . $id,
-            // 'css' => 'fichier.css',
-            // 'js' => 'fichier.js'
+            'categories' => $produits,
+            'title' => 'Page d\'accueil',
         );
 
-        return $this->render('@Boutique/Produit/produit.html.twig', $params);
+        return $this->render('@Boutique/Produit/index.html.twig', $params);
+        // //1 : Récupérer un produit grâce à son $id
+        // // SELECT * FROM produit WHERE idProduit = $id
+        // // Faux array avec un seul produit
+
+        // //2 : Transmettre les données à une vue qui va être rendue.
+        // // produit.html.twig = http://www.sharemycode.fr/produit
+
+        // //3 : Transformer la vue HTML en TWIG (héritage et block et variable)
+
+        // $produits = array(
+        //     0 => array(
+        //         'idProduit' => 1,
+        //         'reference' => 'ABC',
+        //         'categorie' => 'robe',
+        //         'titre' => 'Super robe',
+        //         'description' => 'Cette robe est idéal pour l\'été',
+        //         'public' => 'm',
+        //         'prix' => 25.90,
+        //         'stock' => 150,
+        //         'photo' => 'robe.jpg',
+        //         'couleur' => 'rouge',
+        //         'taille' => 'M',
+        //     ),
+        // );
+
+        // //2: Récupérer toutes les catégories
+        // //SELECT DISTINCT categorie FROM produit
+        // $categories = array(
+        //     0 => array(
+        //         'categorie' => $id,
+        //     ),
+        // );
+
+        // //3: Rend une vue (on transmet à la vue les infos)
+        // $params = array(
+        //     'produits' => $produits,
+        //     'categories' => $categories,
+        //     'title' => 'Produit : ' . $id,
+        //     // 'css' => 'fichier.css',
+        //     // 'js' => 'fichier.js'
+        // );
+
+        // return $this->render('@Boutique/Produit/produit.html.twig', $params);
     }
 
     /**
