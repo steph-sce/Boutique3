@@ -61,17 +61,18 @@ class __TwigTemplate_8d2113affc36479330e476a9617daef5340cbed3672e06d55ddce88d750
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("accueil");
         echo "\">MA BOUTIQUE</a>
       </div>
+      <!-- Le menu -->
       <ul class=\"nav navbar-nav navbar-right\">
         <li><a class=\"nav-link\" href=\"";
-        // line 54
+        // line 55
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("produit_show");
         echo "\">Produit</a></li>
         <li><a class=\"nav-link\" href=\"";
-        // line 55
+        // line 56
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("membre_show");
         echo "\">Membre</a></li>
         <li><a class=\"nav-link\" href=\"";
-        // line 56
+        // line 57
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("commande_show");
         echo "\">Commande</a></li>
         <li><a class=\"nav-link\" href=\"\">Profil</a></li>
@@ -88,9 +89,9 @@ class __TwigTemplate_8d2113affc36479330e476a9617daef5340cbed3672e06d55ddce88d750
         <!-- ici le contenu spécifique de chaque page -->
 
         ";
-        // line 70
+        // line 71
         $this->displayBlock('content', $context, $blocks);
-        // line 72
+        // line 73
         echo "
       </div><!-- .col-12  -->
     </div><!-- .row -->
@@ -135,7 +136,7 @@ class __TwigTemplate_8d2113affc36479330e476a9617daef5340cbed3672e06d55ddce88d750
 
     }
 
-    // line 70
+    // line 71
     public function block_content($context, array $blocks = array())
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
@@ -144,7 +145,7 @@ class __TwigTemplate_8d2113affc36479330e476a9617daef5340cbed3672e06d55ddce88d750
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "content"));
 
-        // line 71
+        // line 72
         echo "        ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -166,7 +167,7 @@ class __TwigTemplate_8d2113affc36479330e476a9617daef5340cbed3672e06d55ddce88d750
 
     public function getDebugInfo()
     {
-        return array (  148 => 71,  139 => 70,  122 => 6,  94 => 72,  92 => 70,  75 => 56,  71 => 55,  67 => 54,  61 => 51,  55 => 47,  47 => 16,  34 => 6,  27 => 1,);
+        return array (  149 => 72,  140 => 71,  123 => 6,  95 => 73,  93 => 71,  76 => 57,  72 => 56,  68 => 55,  61 => 51,  55 => 47,  47 => 16,  34 => 6,  27 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -231,6 +232,7 @@ class __TwigTemplate_8d2113affc36479330e476a9617daef5340cbed3672e06d55ddce88d750
         <!-- La marque -->
         <a class=\"navbar-brand\" href=\"{{ path('accueil') }}\">MA BOUTIQUE</a>
       </div>
+      <!-- Le menu -->
       <ul class=\"nav navbar-nav navbar-right\">
         <li><a class=\"nav-link\" href=\"{{ path('produit_show') }}\">Produit</a></li>
         <li><a class=\"nav-link\" href=\"{{ path('membre_show') }}\">Membre</a></li>

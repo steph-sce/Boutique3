@@ -64,8 +64,11 @@ class __TwigTemplate_5f9cda0f8d6ff4d57414fdfe4bd654a6f52236eca4d903e133bed81512f
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "content"));
 
-        // line 7
-        echo "<div class=\"row\">
+        // line 6
+        echo "<h1 class=\"mt-4\">";
+        echo twig_escape_filter($this->env, ($context["title"] ?? $this->getContext($context, "title")), "html", null, true);
+        echo "</h1>
+<div class=\"row\">
   <div class=\"col-md-3\">
     <a href=\"";
         // line 9
@@ -94,41 +97,44 @@ class __TwigTemplate_5f9cda0f8d6ff4d57414fdfe4bd654a6f52236eca4d903e133bed81512f
       ";
         // line 16
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable(($context["produits"] ?? $this->getContext($context, "produits")));
-        foreach ($context['_seq'] as $context["_key"] => $context["pdt"]) {
+        $context['_seq'] = twig_ensure_traversable(($context["references"] ?? $this->getContext($context, "references")));
+        foreach ($context['_seq'] as $context["_key"] => $context["ref"]) {
             // line 17
             echo "      <div class=\"col-sm-4 mb-4\">
         <div class=\"thumbnail\">
           <a href=\"";
             // line 19
-            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("produit", array("id" => $this->getAttribute($context["pdt"], "idProduit", array()))), "html", null, true);
+            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("produit", array("id" => $this->getAttribute($context["ref"], "idProduit", array()))), "html", null, true);
             echo "\">
             <img src=";
             // line 20
-            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl(("/photo/" . $this->getAttribute($context["pdt"], "photo", array()))), "html", null, true);
+            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl(("/photo/" . $this->getAttribute($context["ref"], "photo", array()))), "html", null, true);
             echo " alt=\"\" class=\"card-img-top\">
           </a>
           <div class=\"card-body\">
             <h4>";
             // line 23
-            echo twig_escape_filter($this->env, $this->getAttribute($context["pdt"], "titre", array()), "html", null, true);
+            echo twig_escape_filter($this->env, $this->getAttribute($context["ref"], "titre", array()), "html", null, true);
             echo "</h4>
             <h5>";
             // line 24
-            echo twig_escape_filter($this->env, twig_number_format_filter($this->env, $this->getAttribute($context["pdt"], "prix", array()), 2, ",", ""), "html", null, true);
+            echo twig_escape_filter($this->env, twig_number_format_filter($this->env, $this->getAttribute($context["ref"], "prix", array()), 2, ",", ""), "html", null, true);
             echo "€</h5>
             <p>";
             // line 25
-            echo twig_escape_filter($this->env, $this->getAttribute($context["pdt"], "description", array()), "html", null, true);
+            echo twig_escape_filter($this->env, $this->getAttribute($context["ref"], "description", array()), "html", null, true);
             echo "</p>
-            <a href=\"\" class=\"btn btn-outline-primary\">Voir le produit</a>
+            <a href=\"";
+            // line 26
+            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("produit", array("id" => $this->getAttribute($context["ref"], "idProduit", array()))), "html", null, true);
+            echo "\" class=\"btn btn-outline-primary\">Voir le produit</a>
           </div>
         </div>
       </div>
       ";
         }
         $_parent = $context['_parent'];
-        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['pdt'], $context['_parent'], $context['loop']);
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['ref'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
         // line 31
         echo "    </div>
@@ -155,7 +161,7 @@ class __TwigTemplate_5f9cda0f8d6ff4d57414fdfe4bd654a6f52236eca4d903e133bed81512f
 
     public function getDebugInfo()
     {
-        return array (  134 => 31,  122 => 25,  118 => 24,  114 => 23,  108 => 20,  104 => 19,  100 => 17,  96 => 16,  91 => 13,  80 => 11,  76 => 10,  72 => 9,  68 => 7,  59 => 5,  41 => 3,  11 => 1,);
+        return array (  140 => 31,  129 => 26,  125 => 25,  121 => 24,  117 => 23,  111 => 20,  107 => 19,  103 => 17,  99 => 16,  94 => 13,  83 => 11,  79 => 10,  75 => 9,  68 => 6,  59 => 5,  41 => 3,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -173,7 +179,7 @@ class __TwigTemplate_5f9cda0f8d6ff4d57414fdfe4bd654a6f52236eca4d903e133bed81512f
 {% block title %}{{ title }}{% endblock %}
 
 {% block content %}
-{# <h1 class=\"mt-4\">{{ title }}</h1> #}
+<h1 class=\"mt-4\">{{ title }}</h1>
 <div class=\"row\">
   <div class=\"col-md-3\">
     <a href=\"{{ path('accueil') }}\" class=\"list-group-item\">Tous</a>
@@ -183,17 +189,17 @@ class __TwigTemplate_5f9cda0f8d6ff4d57414fdfe4bd654a6f52236eca4d903e133bed81512f
   </div>
   <div class=\"col-md-9\">
     <div class=\"row\">
-      {% for pdt in produits %}
+      {% for ref in references %}
       <div class=\"col-sm-4 mb-4\">
         <div class=\"thumbnail\">
-          <a href=\"{{ path('produit', {'id' : pdt.idProduit}) }}\">
-            <img src={{ asset('/photo/' ~ pdt.photo) }} alt=\"\" class=\"card-img-top\">
+          <a href=\"{{ path('produit', {'id' : ref.idProduit}) }}\">
+            <img src={{ asset('/photo/' ~ ref.photo) }} alt=\"\" class=\"card-img-top\">
           </a>
           <div class=\"card-body\">
-            <h4>{{ pdt.titre }}</h4>
-            <h5>{{ pdt.prix | number_format(2, ',', '')}}€</h5>
-            <p>{{ pdt.description }}</p>
-            <a href=\"\" class=\"btn btn-outline-primary\">Voir le produit</a>
+            <h4>{{ ref.titre }}</h4>
+            <h5>{{ ref.prix | number_format(2, ',', '')}}€</h5>
+            <p>{{ ref.description }}</p>
+            <a href=\"{{ path('produit', {'id' : ref.idProduit}) }}\" class=\"btn btn-outline-primary\">Voir le produit</a>
           </div>
         </div>
       </div>

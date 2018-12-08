@@ -77,13 +77,13 @@ class ProduitController extends Controller
         // );
 
         $em = $this->getDoctrine()->getManager();
-        $reference = $em->getRepository('BoutiqueBundle:Produit')->findBy(array(
-            'reference' => $categorie
+        $produit = $em->getRepository('BoutiqueBundle:Produit')->findBy(array(
+            'reference' => $categorie,
         ));
 
         $params = array(
-            'produits' => $reference,
-            'references' => $reference,
+            'produits' => $produit,
+            'references' => $produit,
             'title' => 'Categorie: ' . $categorie,
         );
 
@@ -97,15 +97,19 @@ class ProduitController extends Controller
     public function produitAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-        $produits = $em->getRepository('BoutiqueBundle:Produit')->find($id);
+        $produit = $em->getRepository('BoutiqueBundle:Produit')->find($id);
 
         $params = array(
-            'produits' => $produits,
-            'categories' => $produits,
-            'title' => 'Page d\'accueil',
+            'produits' => $produit,
+            // 'categories' => $reference,
+            'title' => 'Produit: ' . $id,
         );
 
-        return $this->render('@Boutique/Produit/index.html.twig', $params);
+        echo '<pre>';
+        print_r($params);
+        echo '</pre>';
+
+        return $this->render('@Boutique/Admin/produit_show.html.twig', $params);
         // //1 : Récupérer un produit grâce à son $id
         // // SELECT * FROM produit WHERE idProduit = $id
         // // Faux array avec un seul produit
