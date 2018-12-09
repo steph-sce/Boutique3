@@ -1,7 +1,67 @@
 {% extends 'layout.html.twig' %}
 
+{% block title %}{{ title }}{% endblock %}
+
 {% block content %}
 
-<h1>Je suis dans la page qui fait membre_form</h1>
+<h1>{{title}}</h1>
+
+<form>
+	<div class="form-group"> <!-- idMembre -->
+		<label for="full_name_id" class="control-label">idMembre</label>
+		<input type="text" class="form-control" id="full_name_id" name="iMembre" placeholder="idMembre">
+	</div>	
+
+	<div class="form-group"> <!-- nom -->
+		<label for="street1_id" class="control-label">nom</label>
+		<input type="text" class="form-control" id="street1_id" name="nom" placeholder="nom">
+	</div>					
+							
+	<div class="form-group"> <!-- prenom -->
+		<label for="street2_id" class="control-label">prenom</label>
+		<input type="text" class="form-control" id="street2_id" name="prenom" placeholder="prenom">
+	</div>	
+
+	<div class="form-group"> <!-- email-->
+		<label for="city_id" class="control-label">email</label>
+		<input type="text" class="form-control" id="city_id" name="email" placeholder="email">
+	</div>									
+		
+	<div class="form-group"> <!-- civilite-->
+		<label for="zip_id" class="control-label">civilite</label>
+		<input type="text" class="form-control" id="zip_id" name="civilite" placeholder="civilite">
+	</div>		
+		
+	<div class="form-group"> <!-- ville-->
+		<label for="zip_id" class="control-label">ville</label>
+		<input type="text" class="form-control" id="zip_id" name="ville" placeholder="ville">
+	</div>	
+  	
+	<div class="form-group"> <!-- codePostal-->
+		<label for="zip_id" class="control-label">codePostal</label>
+		<input type="text" class="form-control" id="zip_id" name="codePostal" placeholder="codePostal">
+	</div>	
+  	
+	<div class="form-group"> <!-- adresse-->
+		<label for="zip_id" class="control-label">adresse</label>
+		<input type="text" class="form-control" id="zip_id" name="addresse" placeholder="adresse">
+	</div>	
+  	
+	<div class="form-group"> <!-- statut-->
+		<label for="zip_id" class="control-label">statut</label>
+		<input type="text" class="form-control" id="zip_id" name="statut" placeholder="statut">
+	</div>	
+  	
+	<div class="form-group"> <!-- password-->
+		<label for="zip_id" class="control-label">password</label>
+		<input type="text" class="form-control" id="zip_id" name="password" placeholder="password">
+	</div>	
+
+	<div class="form-group"> <!-- Submit Button -->
+		<button type="submit" class="btn btn-primary">Ajouter</button>
+		<button type="submit" class="btn btn-warning">Modifier</button>
+	</div>     
+	
+</form>			
 
 {% endblock %}

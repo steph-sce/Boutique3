@@ -7,24 +7,23 @@
   <div class="col-12">
     <h1>{{ title }}</h1>
   </div>
-  {% for pdt in produits %}
   <div class="col-md-4">
-    <img class="card-img-top" src={{ asset('/photo/' ~ pdt.photo) }} alt="">
+    <img class="card-img-top" src={{ asset('/photo/' ~ produits.photo) }} alt="">
     {# <h3>Description</h3> #}
-    <h4>{{ pdt.description }}</h4>
+    <h4>{{ produits.description }}</h4>
     {# <h3>Détails</h3> #}
     <ul>
-      <li>Catégorie : {{ pdt.categorie }}</li>
-      <li>Couleur : {{ pdt.couleur }}</li>
-      <li>Taille : {{ pdt.taille }}</li>
+      <li>Catégorie : {{ produits.categorie }}</li>
+      <li>Couleur : {{ produits.couleur }}</li>
+      <li>Taille : {{ produits.taille }}</li>
     </ul>
-    <h4>{{ pdt.prix | number_format(2, ',', '')}}€</h4>
+    <h4>{{ produits.prix | number_format(2, ',', '')}}€</h4>
     <!-- s'il y a des produits -->
-    {% if pdt.stock > 0 %}
+    {% if produits.stock > 0 %}
     <form method="post" action="panier.php">
       <input type="hidden" name="id_produit" value="">
       <select name="quantite" class="custom-select col-sm-2">
-      {% for i in 1..5 if i <= pdt.stock %}
+      {% for i in 1..5 if i <= produits.stock %}
         <option>{{ i }}</option>
       {% endfor %}
       </select>
@@ -33,19 +32,19 @@
         <strong>Produit en rupture de stock !</strong>        
       {% endif %}
     </form>
-    <p>Nombre de produit(s) disponible(s) : {{ pdt.stock }}</p>
+    <p>Nombre de produit(s) disponible(s) : {{ produits.stock }}</p>
     <!-- sinon -->
-    {# <p>{{ pdt.stock == 0 ? 'Produit en rupture de stock !' : 'Produit en stock !' }}</p> #}
+    {# <p>{{ produits.stock == 0 ? 'Produit en rupture de stock !' : 'Produit en stock !' }}</p> #}
     <!-- Fin du if -->
     <p>
-      <a href="{{ path('categorie', {'categorie' : pdt.categorie}) }}">Retour vers la catégorie {{ pdt.categorie }}</a>
+      <a href="{{ path('categorie', {'categorie' : produits.categorie}) }}">Retour vers la catégorie {{ produits.categorie }}</a></br>
+      <a href="{{ path('accueil') }}">Retour vers tout les articles</a>
     </p>
   </div>
 </div><!-- .row -->
-{% endfor %}
 
 
-<!-- SUggestions de produit pour plus tard 
+<!-- Suggestions de produit pour plus tard 
     <hr>
     <div class="row">
         <div class="col-12">

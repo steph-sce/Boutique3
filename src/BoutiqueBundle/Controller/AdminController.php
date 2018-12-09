@@ -173,6 +173,15 @@ class AdminController extends Controller
 //         ),
 //     );
 
+    //ADMIN
+    /**
+     * @Route("/login/", name="login")
+     */
+    public function loginAction()
+    {
+        return $this->render('@Boutique/Admin/login.html.twig');
+    }
+
     // PRODUIT
 
     /**
@@ -230,8 +239,6 @@ class AdminController extends Controller
             'title' => 'membre_show'
         );
 
-        var_dump($params);
-
         return new Response($this->render('@Boutique/Admin/membre_show.html.twig', $params));
     }
 
@@ -241,14 +248,16 @@ class AdminController extends Controller
     public function membreProfilAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-        $membre = $em->getRepository('BoutiqueBundle:Membre')->find($id);
+        $membre = $em->getRepository('BoutiqueBundle:Membre')->findBy(
+            array(
+                'idMembre' => $id
+            )
+        );
 
         $params = array(
             'membres' => $membre,
             'title' => 'membre_profil'
         );
-
-        var_dump($params);
 
 
         return new Response($this->render('@Boutique/Admin/membre_show.html.twig', $params));
@@ -265,9 +274,18 @@ class AdminController extends Controller
     /**
      * @Route("/admin/membre/update/{id}", name="membre_update")
      */
-    public function membreUpdateAction()
+    public function membreUpdateAction($id)
     {
-        return $this->render('@Boutique/Admin/membre_form.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $membre = $em->getRepository('BoutiqueBundle:Membre')->find($id);
+
+        $params = array(
+            'membre' => $membre,
+            'title' => 'Modifier un membre.',
+            'disable' => 0
+        );
+
+        return $this->render('@Boutique/Admin/membre_form.html.twig', $params);
     }
 
     /**
@@ -275,7 +293,11 @@ class AdminController extends Controller
      */
     public function membreAddAction()
     {
-        return $this->render('@Boutique/Admin/membre_form.html.twig');
+        $params = array(
+            'title' => 'Ajouter un membre.'
+        );
+
+        return $this->render('@Boutique/Admin/membre_form.html.twig', $params);
     }
 
     // COMMANDE
@@ -285,11 +307,12 @@ class AdminController extends Controller
      */
     public function commandeShowAction()
     {
+        $em = $this->getDoctrine()->getManager();
+        $commandes = $em->getRepository('BoutiqueBundle:Commande')->findAll();
+
         $params = array(
-            'commande' => $this->commandes,
-            'title' => 'commande_show',
-            // 'css' => 'fichier.css',
-            // 'js' => 'fichier.js'
+            'commandes' => $commandes,
+            'title' => 'Commandes'
         );
 
         return $this->render('@Boutique/Admin/commande_show.html.twig', $params);

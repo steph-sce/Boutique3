@@ -75,9 +75,9 @@ class Produit
         return $this->idProduit;
     }
 
-    public function setIdProduit($arg)
+    public function setIdProduit($idProduit)
     {
-        $this->idProduit = $arg;
+        $this->idProduit = $idProduit;
         return $this;
     }
 
@@ -87,9 +87,9 @@ class Produit
         return $this->reference;
     }
 
-    public function setReference($arg)
+    public function setReference($reference)
     {
-        $this->reference = $arg;
+        $this->reference = $reference;
         return $this;
     }
 
@@ -99,9 +99,9 @@ class Produit
         return $this->categorie;
     }
 
-    public function setCategorie($arg)
+    public function setCategorie($categorie)
     {
-        $this->idProduit = $arg;
+        $this->categorie = $categorie;
         return $this;
     }
 
@@ -111,9 +111,9 @@ class Produit
         return $this->titre;
     }
 
-    public function setTitre($arg)
+    public function setTitre($titre)
     {
-        $this->titre = $arg;
+        $this->titre = $titre;
         return $this;
     }
 
@@ -123,9 +123,9 @@ class Produit
         return $this->description;
     }
 
-    public function setDescription($arg)
+    public function setDescription($description)
     {
-        $this->description = $arg;
+        $this->description = $description;
         return $this;
     }
 
@@ -135,9 +135,9 @@ class Produit
         return $this->couleur;
     }
 
-    public function setCouleur($arg)
+    public function setCouleur($couleur)
     {
-        $this->couleur = $arg;
+        $this->couleur = $couleur;
         return $this;
     }
 
@@ -147,9 +147,9 @@ class Produit
         return $this->taille;
     }
 
-    public function setTaille($arg)
+    public function setTaille($taille)
     {
-        $this->taille = $arg;
+        $this->taille = $taille;
         return $this;
     }
 

@@ -107,7 +107,22 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
         }
 
-        elseif (0 === strpos($pathinfo, '/admin')) {
+        // login
+        if ('/login' === $trimmedPathinfo) {
+            $ret = array (  '_controller' => 'BoutiqueBundle\\Controller\\AdminController::loginAction',  '_route' => 'login',);
+            if ('/' === substr($pathinfo, -1)) {
+                // no-op
+            } elseif ('GET' !== $canonicalMethod) {
+                goto not_login;
+            } else {
+                return array_replace($ret, $this->redirect($rawPathinfo.'/', 'login'));
+            }
+
+            return $ret;
+        }
+        not_login:
+
+        if (0 === strpos($pathinfo, '/admin')) {
             if (0 === strpos($pathinfo, '/admin/produit')) {
                 // produit_show
                 if ('/admin/produit/show' === $pathinfo) {
@@ -184,20 +199,65 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
         }
 
-        // accueil
-        if ('' === $trimmedPathinfo) {
-            $ret = array (  '_controller' => 'BoutiqueBundle\\Controller\\ProduitController::indexAction',  '_route' => 'accueil',);
+        // profil
+        if ('/profil' === $trimmedPathinfo) {
+            $ret = array (  '_controller' => 'BoutiqueBundle\\Controller\\MembreController::profilAction',  '_route' => 'profil',);
             if ('/' === substr($pathinfo, -1)) {
                 // no-op
             } elseif ('GET' !== $canonicalMethod) {
-                goto not_accueil;
+                goto not_profil;
             } else {
-                return array_replace($ret, $this->redirect($rawPathinfo.'/', 'accueil'));
+                return array_replace($ret, $this->redirect($rawPathinfo.'/', 'profil'));
             }
 
             return $ret;
         }
-        not_accueil:
+        not_profil:
+
+        // produit
+        if (0 === strpos($pathinfo, '/produit') && preg_match('#^/produit/(?P<id>[^/]++)/?$#sD', $pathinfo, $matches)) {
+            $ret = $this->mergeDefaults(array_replace($matches, array('_route' => 'produit')), array (  '_controller' => 'BoutiqueBundle\\Controller\\ProduitController::produitAction',));
+            if ('/' === substr($pathinfo, -1)) {
+                // no-op
+            } elseif ('GET' !== $canonicalMethod) {
+                goto not_produit;
+            } else {
+                return array_replace($ret, $this->redirect($rawPathinfo.'/', 'produit'));
+            }
+
+            return $ret;
+        }
+        not_produit:
+
+        // inscription
+        if ('/inscription' === $trimmedPathinfo) {
+            $ret = array (  '_controller' => 'BoutiqueBundle\\Controller\\MembreController::inscriptionAction',  '_route' => 'inscription',);
+            if ('/' === substr($pathinfo, -1)) {
+                // no-op
+            } elseif ('GET' !== $canonicalMethod) {
+                goto not_inscription;
+            } else {
+                return array_replace($ret, $this->redirect($rawPathinfo.'/', 'inscription'));
+            }
+
+            return $ret;
+        }
+        not_inscription:
+
+        // connexion
+        if ('/connexion' === $trimmedPathinfo) {
+            $ret = array (  '_controller' => 'BoutiqueBundle\\Controller\\MembreController::connexionAction',  '_route' => 'connexion',);
+            if ('/' === substr($pathinfo, -1)) {
+                // no-op
+            } elseif ('GET' !== $canonicalMethod) {
+                goto not_connexion;
+            } else {
+                return array_replace($ret, $this->redirect($rawPathinfo.'/', 'connexion'));
+            }
+
+            return $ret;
+        }
+        not_connexion:
 
         // categorie
         if (0 === strpos($pathinfo, '/categorie') && preg_match('#^/categorie/(?P<categorie>[^/]++)/?$#sD', $pathinfo, $matches)) {
@@ -214,20 +274,20 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
         }
         not_categorie:
 
-        // produit
-        if (0 === strpos($pathinfo, '/produit') && preg_match('#^/produit/(?P<id>[^/]++)/?$#sD', $pathinfo, $matches)) {
-            $ret = $this->mergeDefaults(array_replace($matches, array('_route' => 'produit')), array (  '_controller' => 'BoutiqueBundle\\Controller\\ProduitController::produitAction',));
+        // accueil
+        if ('' === $trimmedPathinfo) {
+            $ret = array (  '_controller' => 'BoutiqueBundle\\Controller\\ProduitController::indexAction',  '_route' => 'accueil',);
             if ('/' === substr($pathinfo, -1)) {
                 // no-op
             } elseif ('GET' !== $canonicalMethod) {
-                goto not_produit;
+                goto not_accueil;
             } else {
-                return array_replace($ret, $this->redirect($rawPathinfo.'/', 'produit'));
+                return array_replace($ret, $this->redirect($rawPathinfo.'/', 'accueil'));
             }
 
             return $ret;
         }
-        not_produit:
+        not_accueil:
 
         // resultats
         if ('/resultats' === $trimmedPathinfo) {

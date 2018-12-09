@@ -7,28 +7,45 @@
 <div class="row">
   <div class="col-md-3">
     <a href="{{ path('accueil') }}" class="list-group-item">Tous</a>
-    {% for ref in references %}
-    <a href="{{ path('categorie', {'categorie' : ref.reference}) }}" class="list-group-item list-group-item-action">{{ ref.reference | capitalize }}</a>
+    {% for pdt in produits %}
+    <a href="{{ path('categorie', {'categorie' : pdt.categorie}) }}" class="list-group-item list-group-item-action">{{
+      pdt.categorie | capitalize }}</a>
     {% endfor %}
   </div>
   <div class="col-md-9">
     <div class="row">
-      {% for ref in references %}
-      <div class="col-sm-4 mb-4">
+      {% if produits|length < 2 %} <div class="col-sm-4 mb-4">
         <div class="thumbnail">
-          <a href="{{ path('produit', {'id' : ref.idProduit}) }}">
-            <img src={{ asset('/photo/' ~ ref.photo) }} alt="" class="card-img-top">
+          <a href="{{ path('produit', {'id' : produits[0].idProduit}) }}">
+            <img src={{ asset('/photo/' ~ produits[0].photo) }} alt="" class="card-img-top">
           </a>
           <div class="card-body">
-            <h4>{{ ref.titre }}</h4>
-            <h5>{{ ref.prix | number_format(2, ',', '')}}€</h5>
-            <p>{{ ref.description }}</p>
-            <a href="{{ path('produit', {'id' : ref.idProduit}) }}" class="btn btn-outline-primary">Voir le produit</a>
+            <h4>{{ produits[0].titre }}</h4>
+            <h5>{{ produits[0].prix | number_format(2, ',', '')}}€</h5>
+            <p>{{ produits[0].description }}</p>
+            <a href="{{ path('produit', {'id' : produits[0].idProduit}) }}" class="btn btn-outline-primary">Voir le
+              produit</a>
           </div>
         </div>
-      </div>
-      {% endfor %}
     </div>
+    {% else %}
+    {% for pdt in produits %}
+    <div class="col-sm-4 mb-4">
+      <div class="thumbnail">
+        <a href="{{ path('produit', {'id' : pdt.idProduit}) }}">
+          <img src={{ asset('/photo/' ~ pdt.photo) }} alt="" class="card-img-top">
+        </a>
+        <div class="card-body">
+          <h4>{{ pdt.titre }}</h4>
+          <h5>{{ pdt.prix | number_format(2, ',', '')}}€</h5>
+          <p>{{ pdt.description }}</p>
+          <a href="{{ path('produit', {'id' : pdt.idProduit}) }}" class="btn btn-outline-primary">Voir le produit</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    {% endif %}
   </div>
+</div>
 </div><!-- .row -->
 {% endblock %}
