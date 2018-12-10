@@ -13,22 +13,7 @@
     {% endfor %}
   </div>
   <div class="col-md-9">
-    <div class="row">
-      {% if produits|length < 2 %} <div class="col-sm-4 mb-4">
-        <div class="thumbnail">
-          <a href="{{ path('produit', {'id' : produits[0].idProduit}) }}">
-            <img src={{ asset('/photo/' ~ produits[0].photo) }} alt="" class="card-img-top">
-          </a>
-          <div class="card-body">
-            <h4>{{ produits[0].titre }}</h4>
-            <h5>{{ produits[0].prix | number_format(2, ',', '')}}€</h5>
-            <p>{{ produits[0].description }}</p>
-            <a href="{{ path('produit', {'id' : produits[0].idProduit}) }}" class="btn btn-outline-primary">Voir le
-              produit</a>
-          </div>
-        </div>
-    </div>
-    {% else %}
+    <div class="row">      
     {% for pdt in produits %}
     <div class="col-sm-4 mb-4">
       <div class="thumbnail">
@@ -44,7 +29,6 @@
       </div>
     </div>
     {% endfor %}
-    {% endif %}
   </div>
 </div>
 </div><!-- .row -->

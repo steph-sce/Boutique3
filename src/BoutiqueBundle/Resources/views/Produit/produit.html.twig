@@ -4,57 +4,32 @@
 
 {% block content %}
 <div class="row">
-  <div class="col-12">
-    <h1>{{ title }}</h1>
+  <div class="col-sm-8 col-md-6">
+    <div class="thumbnail">
+      <img class="card-img-top" src={{ asset('/photo/' ~ produits.photo) }} alt="">
+      <div class="caption">
+        <h3>{{ produits.description }}</h3>
+        <p>Catégorie : {{ produits.categorie }}</p>
+        <p>Couleur : {{ produits.couleur }}</p>
+        <p>Taille : {{ produits.taille }}</p>
+        <h4>{{ produits.prix | number_format(2, ',', '')}}€</h4>
+        {% if produits.stock > 0 %}
+          <input type="hidden" name="id_produit" value="">
+          <select name="quantite" class="custom-select col-sm-12">
+          {% for i in 1..5 if i <= produits.stock %} <option>{{ i }}</option>{% endfor %}
+          </select>
+          <input type="submit" name="ajout_panier" value="ajouter au panier" class="btn btn-warning col-sm-12"></br>
+          {% else %}
+          <strong>Produit en rupture de stock !</strong>
+        {% endif %}
+          <p>Nombre de produit(s) disponible(s) : {{ produits.stock }}</p>
+          <p>
+            <a href="{{ path('categorie', {'categorie' : produits.categorie}) }}" class="btn btn-primary" role="button">Retour
+              vers la catégorie</a>
+            <a href="{{ path('accueil') }}" class="btn btn-default" role="button">Retour vers tout les articles</a>
+          </p>
+      </div>
+    </div>
   </div>
-  <div class="col-md-4">
-    <img class="card-img-top" src={{ asset('/photo/' ~ produits.photo) }} alt="">
-    {# <h3>Description</h3> #}
-    <h4>{{ produits.description }}</h4>
-    {# <h3>Détails</h3> #}
-    <ul>
-      <li>Catégorie : {{ produits.categorie }}</li>
-      <li>Couleur : {{ produits.couleur }}</li>
-      <li>Taille : {{ produits.taille }}</li>
-    </ul>
-    <h4>{{ produits.prix | number_format(2, ',', '')}}€</h4>
-    <!-- s'il y a des produits -->
-    {% if produits.stock > 0 %}
-    <form method="post" action="panier.php">
-      <input type="hidden" name="id_produit" value="">
-      <select name="quantite" class="custom-select col-sm-2">
-      {% for i in 1..5 if i <= produits.stock %}
-        <option>{{ i }}</option>
-      {% endfor %}
-      </select>
-       <input type="submit" name="ajout_panier" value="ajouter au panier" class="btn col-sm-8 ml-2">
-      {% else %}
-        <strong>Produit en rupture de stock !</strong>        
-      {% endif %}
-    </form>
-    <p>Nombre de produit(s) disponible(s) : {{ produits.stock }}</p>
-    <!-- sinon -->
-    {# <p>{{ produits.stock == 0 ? 'Produit en rupture de stock !' : 'Produit en stock !' }}</p> #}
-    <!-- Fin du if -->
-    <p>
-      <a href="{{ path('categorie', {'categorie' : produits.categorie}) }}">Retour vers la catégorie {{ produits.categorie }}</a></br>
-      <a href="{{ path('accueil') }}">Retour vers tout les articles</a>
-    </p>
-  </div>
-</div><!-- .row -->
-
-
-<!-- Suggestions de produit pour plus tard 
-    <hr>
-    <div class="row">
-        <div class="col-12">
-            <h3>Suggestions de produits</h3>
-        </div>
-		   <div class="col-sm-3">
-				<a href="">
-					<img src="" alt="" class="img-fluid">
-				</a>
-				<h4>10€</h4>
-		   </div> 
-    </div>-->
+</div>
 {% endblock %}

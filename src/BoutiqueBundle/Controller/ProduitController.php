@@ -15,10 +15,8 @@ class ProduitController extends Controller
      */
     public function indexAction()
     {
-        //1: Récupérer les infos des produits
-        //SELECT * FROM Produit
-        $em = $this->getDoctrine()->getManager();
-        $produits = $em->getRepository('BoutiqueBundle:Produit')->findAll();
+        $repository = $this->getDoctrine()->getRepository(Produit::class);
+        $produits = $repository->findAll();
 
         $params = array(
             'produits' => $produits,
@@ -35,16 +33,18 @@ class ProduitController extends Controller
      */
     public function categorieAction($categorie)
     {
-        $em = $this->getDoctrine()->getManager();
-        $article = $em->getRepository('BoutiqueBundle:Produit')->findBy(
-            array(
-                'categorie' => $categorie
-            )
-        );
+        $repository = $this->getDoctrine()->getRepository(Produit::class);
+        $article = $repository->findBy(['categorie' => $categorie]);
+
+        // $em = $this->getDoctrine()->getManager();
+        // $article = $em->getRepository('BoutiqueBundle:Produit')->findBy(
+        //     array(
+        //         'categorie' => $categorie
+        //     )
+        // );
 
         $params = array(
             'produits' => $article,
-            // 'references' => $produit,
             'title' => 'Categorie: ' . $categorie,
         );
 
@@ -57,59 +57,21 @@ class ProduitController extends Controller
      */
     public function produitAction($id)
     {
+        //Methode 1 : Repository
+        // $repository = $this->getDoctrine()->getRepository(Produit::class);
+        // $produit = $repository->find($id);
+
+        //Methode 2
         $em = $this->getDoctrine()->getManager();
-        $produit = $em->getRepository('BoutiqueBundle:Produit')->find($id);
+        $produit = $em->find(Produit::class, $id);
 
         $params = array(
             'produits' => $produit,
             // 'categories' => $reference,
-            'title' => 'Produit: ' . $id,
+            'title' => $produit -> getTitre()
         );
 
         return $this->render('@Boutique/Produit/produit.html.twig', $params);
-        // //1 : Récupérer un produit grâce à son $id
-        // // SELECT * FROM produit WHERE idProduit = $id
-        // // Faux array avec un seul produit
-
-        // //2 : Transmettre les données à une vue qui va être rendue.
-        // // produit.html.twig = http://www.sharemycode.fr/produit
-
-        // //3 : Transformer la vue HTML en TWIG (héritage et block et variable)
-
-        // $produits = array(
-        //     0 => array(
-        //         'idProduit' => 1,
-        //         'reference' => 'ABC',
-        //         'categorie' => 'robe',
-        //         'titre' => 'Super robe',
-        //         'description' => 'Cette robe est idéal pour l\'été',
-        //         'public' => 'm',
-        //         'prix' => 25.90,
-        //         'stock' => 150,
-        //         'photo' => 'robe.jpg',
-        //         'couleur' => 'rouge',
-        //         'taille' => 'M',
-        //     ),
-        // );
-
-        // //2: Récupérer toutes les catégories
-        // //SELECT DISTINCT categorie FROM produit
-        // $categories = array(
-        //     0 => array(
-        //         'categorie' => $id,
-        //     ),
-        // );
-
-        // //3: Rend une vue (on transmet à la vue les infos)
-        // $params = array(
-        //     'produits' => $produits,
-        //     'categories' => $categories,
-        //     'title' => 'Produit : ' . $id,
-        //     // 'css' => 'fichier.css',
-        //     // 'js' => 'fichier.js'
-        // );
-
-        // return $this->render('@Boutique/Produit/produit.html.twig', $params);
     }
 
     /**

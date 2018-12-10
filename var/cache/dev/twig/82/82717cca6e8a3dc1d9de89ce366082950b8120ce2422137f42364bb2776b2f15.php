@@ -66,114 +66,81 @@ class __TwigTemplate_856f0a42b683a8c147d13c31644b3bd649baa752a0d3b46b05edc95c23f
 
         // line 6
         echo "<div class=\"row\">
-  <div class=\"col-12\">
-    <h1>";
-        // line 8
-        echo twig_escape_filter($this->env, ($context["title"] ?? $this->getContext($context, "title")), "html", null, true);
-        echo "</h1>
-  </div>
-  <div class=\"col-md-4\">
-    <img class=\"card-img-top\" src=";
-        // line 11
+  <div class=\"col-sm-8 col-md-6\">
+    <div class=\"thumbnail\">
+      <img class=\"card-img-top\" src=";
+        // line 9
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl(("/photo/" . $this->getAttribute(($context["produits"] ?? $this->getContext($context, "produits")), "photo", array()))), "html", null, true);
         echo " alt=\"\">
-    ";
-        // line 13
-        echo "    <h4>";
+      <div class=\"caption\">
+        <h3>";
+        // line 11
         echo twig_escape_filter($this->env, $this->getAttribute(($context["produits"] ?? $this->getContext($context, "produits")), "description", array()), "html", null, true);
-        echo "</h4>
-    ";
-        // line 15
-        echo "    <ul>
-      <li>Catégorie : ";
-        // line 16
+        echo "</h3>
+        <p>Catégorie : ";
+        // line 12
         echo twig_escape_filter($this->env, $this->getAttribute(($context["produits"] ?? $this->getContext($context, "produits")), "categorie", array()), "html", null, true);
-        echo "</li>
-      <li>Couleur : ";
-        // line 17
+        echo "</p>
+        <p>Couleur : ";
+        // line 13
         echo twig_escape_filter($this->env, $this->getAttribute(($context["produits"] ?? $this->getContext($context, "produits")), "couleur", array()), "html", null, true);
-        echo "</li>
-      <li>Taille : ";
-        // line 18
+        echo "</p>
+        <p>Taille : ";
+        // line 14
         echo twig_escape_filter($this->env, $this->getAttribute(($context["produits"] ?? $this->getContext($context, "produits")), "taille", array()), "html", null, true);
-        echo "</li>
-    </ul>
-    <h4>";
-        // line 20
+        echo "</p>
+        <h4>";
+        // line 15
         echo twig_escape_filter($this->env, twig_number_format_filter($this->env, $this->getAttribute(($context["produits"] ?? $this->getContext($context, "produits")), "prix", array()), 2, ",", ""), "html", null, true);
         echo "€</h4>
-    <!-- s'il y a des produits -->
-    ";
-        // line 22
+        ";
+        // line 16
         if (($this->getAttribute(($context["produits"] ?? $this->getContext($context, "produits")), "stock", array()) > 0)) {
-            // line 23
-            echo "    <form method=\"post\" action=\"panier.php\">
-      <input type=\"hidden\" name=\"id_produit\" value=\"\">
-      <select name=\"quantite\" class=\"custom-select col-sm-2\">
-      ";
-            // line 26
+            // line 17
+            echo "          <input type=\"hidden\" name=\"id_produit\" value=\"\">
+          <select name=\"quantite\" class=\"custom-select col-sm-12\">
+          ";
+            // line 19
             $context['_parent'] = $context;
             $context['_seq'] = twig_ensure_traversable(range(1, 5));
             foreach ($context['_seq'] as $context["_key"] => $context["i"]) {
                 if (($context["i"] <= $this->getAttribute(($context["produits"] ?? $this->getContext($context, "produits")), "stock", array()))) {
-                    // line 27
-                    echo "        <option>";
+                    echo " <option>";
                     echo twig_escape_filter($this->env, $context["i"], "html", null, true);
-                    echo "</option>
-      ";
+                    echo "</option>";
                 }
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['i'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 29
-            echo "      </select>
-       <input type=\"submit\" name=\"ajout_panier\" value=\"ajouter au panier\" class=\"btn col-sm-8 ml-2\">
-      ";
+            // line 20
+            echo "          </select>
+          <input type=\"submit\" name=\"ajout_panier\" value=\"ajouter au panier\" class=\"btn btn-warning col-sm-12\"></br>
+          ";
         } else {
-            // line 32
-            echo "        <strong>Produit en rupture de stock !</strong>        
-      ";
+            // line 23
+            echo "          <strong>Produit en rupture de stock !</strong>
+        ";
         }
-        // line 34
-        echo "    </form>
-    <p>Nombre de produit(s) disponible(s) : ";
-        // line 35
+        // line 25
+        echo "          <p>Nombre de produit(s) disponible(s) : ";
         echo twig_escape_filter($this->env, $this->getAttribute(($context["produits"] ?? $this->getContext($context, "produits")), "stock", array()), "html", null, true);
         echo "</p>
-    <!-- sinon -->
-    ";
-        // line 38
-        echo "    <!-- Fin du if -->
-    <p>
-      <a href=\"";
-        // line 40
+          <p>
+            <a href=\"";
+        // line 27
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("categorie", array("categorie" => $this->getAttribute(($context["produits"] ?? $this->getContext($context, "produits")), "categorie", array()))), "html", null, true);
-        echo "\">Retour vers la catégorie ";
-        echo twig_escape_filter($this->env, $this->getAttribute(($context["produits"] ?? $this->getContext($context, "produits")), "categorie", array()), "html", null, true);
-        echo "</a></br>
-      <a href=\"";
-        // line 41
+        echo "\" class=\"btn btn-primary\" role=\"button\">Retour
+              vers la catégorie</a>
+            <a href=\"";
+        // line 29
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("accueil");
-        echo "\">Retour vers tout les articles</a>
-    </p>
+        echo "\" class=\"btn btn-default\" role=\"button\">Retour vers tout les articles</a>
+          </p>
+      </div>
+    </div>
   </div>
-</div><!-- .row -->
-
-
-<!-- Suggestions de produit pour plus tard 
-    <hr>
-    <div class=\"row\">
-        <div class=\"col-12\">
-            <h3>Suggestions de produits</h3>
-        </div>
-\t\t   <div class=\"col-sm-3\">
-\t\t\t\t<a href=\"\">
-\t\t\t\t\t<img src=\"\" alt=\"\" class=\"img-fluid\">
-\t\t\t\t</a>
-\t\t\t\t<h4>10€</h4>
-\t\t   </div> 
-    </div>-->
+</div>
 ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -195,7 +162,7 @@ class __TwigTemplate_856f0a42b683a8c147d13c31644b3bd649baa752a0d3b46b05edc95c23f
 
     public function getDebugInfo()
     {
-        return array (  157 => 41,  151 => 40,  147 => 38,  142 => 35,  139 => 34,  135 => 32,  130 => 29,  120 => 27,  115 => 26,  110 => 23,  108 => 22,  103 => 20,  98 => 18,  94 => 17,  90 => 16,  87 => 15,  82 => 13,  78 => 11,  72 => 8,  68 => 6,  59 => 5,  41 => 3,  11 => 1,);
+        return array (  137 => 29,  132 => 27,  126 => 25,  122 => 23,  117 => 20,  104 => 19,  100 => 17,  98 => 16,  94 => 15,  90 => 14,  86 => 13,  82 => 12,  78 => 11,  73 => 9,  68 => 6,  59 => 5,  41 => 3,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -214,59 +181,34 @@ class __TwigTemplate_856f0a42b683a8c147d13c31644b3bd649baa752a0d3b46b05edc95c23f
 
 {% block content %}
 <div class=\"row\">
-  <div class=\"col-12\">
-    <h1>{{ title }}</h1>
+  <div class=\"col-sm-8 col-md-6\">
+    <div class=\"thumbnail\">
+      <img class=\"card-img-top\" src={{ asset('/photo/' ~ produits.photo) }} alt=\"\">
+      <div class=\"caption\">
+        <h3>{{ produits.description }}</h3>
+        <p>Catégorie : {{ produits.categorie }}</p>
+        <p>Couleur : {{ produits.couleur }}</p>
+        <p>Taille : {{ produits.taille }}</p>
+        <h4>{{ produits.prix | number_format(2, ',', '')}}€</h4>
+        {% if produits.stock > 0 %}
+          <input type=\"hidden\" name=\"id_produit\" value=\"\">
+          <select name=\"quantite\" class=\"custom-select col-sm-12\">
+          {% for i in 1..5 if i <= produits.stock %} <option>{{ i }}</option>{% endfor %}
+          </select>
+          <input type=\"submit\" name=\"ajout_panier\" value=\"ajouter au panier\" class=\"btn btn-warning col-sm-12\"></br>
+          {% else %}
+          <strong>Produit en rupture de stock !</strong>
+        {% endif %}
+          <p>Nombre de produit(s) disponible(s) : {{ produits.stock }}</p>
+          <p>
+            <a href=\"{{ path('categorie', {'categorie' : produits.categorie}) }}\" class=\"btn btn-primary\" role=\"button\">Retour
+              vers la catégorie</a>
+            <a href=\"{{ path('accueil') }}\" class=\"btn btn-default\" role=\"button\">Retour vers tout les articles</a>
+          </p>
+      </div>
+    </div>
   </div>
-  <div class=\"col-md-4\">
-    <img class=\"card-img-top\" src={{ asset('/photo/' ~ produits.photo) }} alt=\"\">
-    {# <h3>Description</h3> #}
-    <h4>{{ produits.description }}</h4>
-    {# <h3>Détails</h3> #}
-    <ul>
-      <li>Catégorie : {{ produits.categorie }}</li>
-      <li>Couleur : {{ produits.couleur }}</li>
-      <li>Taille : {{ produits.taille }}</li>
-    </ul>
-    <h4>{{ produits.prix | number_format(2, ',', '')}}€</h4>
-    <!-- s'il y a des produits -->
-    {% if produits.stock > 0 %}
-    <form method=\"post\" action=\"panier.php\">
-      <input type=\"hidden\" name=\"id_produit\" value=\"\">
-      <select name=\"quantite\" class=\"custom-select col-sm-2\">
-      {% for i in 1..5 if i <= produits.stock %}
-        <option>{{ i }}</option>
-      {% endfor %}
-      </select>
-       <input type=\"submit\" name=\"ajout_panier\" value=\"ajouter au panier\" class=\"btn col-sm-8 ml-2\">
-      {% else %}
-        <strong>Produit en rupture de stock !</strong>        
-      {% endif %}
-    </form>
-    <p>Nombre de produit(s) disponible(s) : {{ produits.stock }}</p>
-    <!-- sinon -->
-    {# <p>{{ produits.stock == 0 ? 'Produit en rupture de stock !' : 'Produit en stock !' }}</p> #}
-    <!-- Fin du if -->
-    <p>
-      <a href=\"{{ path('categorie', {'categorie' : produits.categorie}) }}\">Retour vers la catégorie {{ produits.categorie }}</a></br>
-      <a href=\"{{ path('accueil') }}\">Retour vers tout les articles</a>
-    </p>
-  </div>
-</div><!-- .row -->
-
-
-<!-- Suggestions de produit pour plus tard 
-    <hr>
-    <div class=\"row\">
-        <div class=\"col-12\">
-            <h3>Suggestions de produits</h3>
-        </div>
-\t\t   <div class=\"col-sm-3\">
-\t\t\t\t<a href=\"\">
-\t\t\t\t\t<img src=\"\" alt=\"\" class=\"img-fluid\">
-\t\t\t\t</a>
-\t\t\t\t<h4>10€</h4>
-\t\t   </div> 
-    </div>-->
+</div>
 {% endblock %}", "@Boutique/Produit/produit.html.twig", "C:\\wamp64\\www\\Boutique3\\src\\BoutiqueBundle\\Resources\\views\\Produit\\produit.html.twig");
     }
 }

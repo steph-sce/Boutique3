@@ -65,31 +65,37 @@ class __TwigTemplate_f9234f7403ce83bbd3c9e03214deca422d4293a8134d57504648ce8d994
       <ul class=\"nav navbar-nav navbar-right\">
         <li><a class=\"nav-link\" href=\"";
         // line 55
-        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("produit_show");
-        echo "\">Produit</a></li>
-        <li><a class=\"nav-link\" href=\"";
-        // line 56
-        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("membre_show");
-        echo "\">Membre</a></li>
-        <li><a class=\"nav-link\" href=\"";
-        // line 57
-        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("commande_show");
-        echo "\">Commande</a></li>
-        <li><a class=\"nav-link\" href=\"";
-        // line 58
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("profil");
         echo "\">Profil</a></li>
         <li><a class=\"nav-link\" href=\"\">Deconnexion</a></li>
         <li><a class=\"nav-link\" href=\"";
-        // line 60
+        // line 57
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("connexion");
         echo "\">Connexion</a></li>
         <li><a class=\"nav-link\" href=\"";
-        // line 61
+        // line 58
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("inscription");
         echo "\">Inscription</a></li>
-      </ul>
-    </div>
+        </li>
+        <ul class=\"nav navbar-nav navbar-right text-uppercase\">
+          <!-- Visa drapdown-->
+          <li class=\"dropdown\">
+            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Admin <span class=\"caret\"></span></a>
+            <ul class=\"dropdown-menu pull-left\" role=\"menu\">
+              <li><a class=\"nav-link\" href=\"";
+        // line 65
+        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("produit_show");
+        echo "\">Gestion des produits</a></li>
+              <li><a class=\"nav-link\" href=\"";
+        // line 66
+        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("commande_show");
+        echo "\">Gestion des commandes</a></li>
+              <li><a class=\"nav-link\" href=\"";
+        // line 67
+        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("membre_show");
+        echo "\">Gestion des membres</a></li>
+            </ul>
+        </ul>
   </nav>
   <!-- Page Content -->
   <div class=\"container\" style=\"min-height: 80vh;\">
@@ -98,9 +104,9 @@ class __TwigTemplate_f9234f7403ce83bbd3c9e03214deca422d4293a8134d57504648ce8d994
         <!-- ici le contenu spécifique de chaque page -->
 
         ";
-        // line 71
+        // line 77
         $this->displayBlock('content', $context, $blocks);
-        // line 73
+        // line 79
         echo "
       </div><!-- .col-12  -->
     </div><!-- .row -->
@@ -145,7 +151,7 @@ class __TwigTemplate_f9234f7403ce83bbd3c9e03214deca422d4293a8134d57504648ce8d994
 
     }
 
-    // line 71
+    // line 77
     public function block_content($context, array $blocks = array())
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
@@ -154,7 +160,7 @@ class __TwigTemplate_f9234f7403ce83bbd3c9e03214deca422d4293a8134d57504648ce8d994
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "content"));
 
-        // line 72
+        // line 78
         echo "        ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -176,7 +182,7 @@ class __TwigTemplate_f9234f7403ce83bbd3c9e03214deca422d4293a8134d57504648ce8d994
 
     public function getDebugInfo()
     {
-        return array (  158 => 72,  149 => 71,  132 => 6,  104 => 73,  102 => 71,  89 => 61,  85 => 60,  80 => 58,  76 => 57,  72 => 56,  68 => 55,  61 => 51,  55 => 47,  47 => 16,  34 => 6,  27 => 1,);
+        return array (  164 => 78,  155 => 77,  138 => 6,  110 => 79,  108 => 77,  95 => 67,  91 => 66,  87 => 65,  77 => 58,  73 => 57,  68 => 55,  61 => 51,  55 => 47,  47 => 16,  34 => 6,  27 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -243,15 +249,21 @@ class __TwigTemplate_f9234f7403ce83bbd3c9e03214deca422d4293a8134d57504648ce8d994
       </div>
       <!-- Le menu -->
       <ul class=\"nav navbar-nav navbar-right\">
-        <li><a class=\"nav-link\" href=\"{{ path('produit_show') }}\">Produit</a></li>
-        <li><a class=\"nav-link\" href=\"{{ path('membre_show') }}\">Membre</a></li>
-        <li><a class=\"nav-link\" href=\"{{ path('commande_show') }}\">Commande</a></li>
         <li><a class=\"nav-link\" href=\"{{ path('profil') }}\">Profil</a></li>
         <li><a class=\"nav-link\" href=\"\">Deconnexion</a></li>
         <li><a class=\"nav-link\" href=\"{{ path('connexion') }}\">Connexion</a></li>
         <li><a class=\"nav-link\" href=\"{{ path('inscription') }}\">Inscription</a></li>
-      </ul>
-    </div>
+        </li>
+        <ul class=\"nav navbar-nav navbar-right text-uppercase\">
+          <!-- Visa drapdown-->
+          <li class=\"dropdown\">
+            <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Admin <span class=\"caret\"></span></a>
+            <ul class=\"dropdown-menu pull-left\" role=\"menu\">
+              <li><a class=\"nav-link\" href=\"{{ path('produit_show') }}\">Gestion des produits</a></li>
+              <li><a class=\"nav-link\" href=\"{{ path('commande_show') }}\">Gestion des commandes</a></li>
+              <li><a class=\"nav-link\" href=\"{{ path('membre_show') }}\">Gestion des membres</a></li>
+            </ul>
+        </ul>
   </nav>
   <!-- Page Content -->
   <div class=\"container\" style=\"min-height: 80vh;\">

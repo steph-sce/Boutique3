@@ -65,36 +65,42 @@ class __TwigTemplate_bf328edf91e3a416ad36fe63b379fef0010c58e41067e3da9246b9f536c
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "content"));
 
         // line 6
-        echo "
-<h1>Je suis dans la page qui fait produit_show</h1>
-
-<div class=\"container\">
+        echo "<div class=\"container\">
   <div class=\"row\">
     <div class=\"col-md-12\">
+    <a href=\"";
+        // line 9
+        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("produit_add");
+        echo "\">Ajouter un artile</a>
       <div class=\"table-responsive\">
         <table id=\"mytable\" class=\"table table-bordred table-striped\">
           <thead>
             <th><input type=\"checkbox\" id=\"checkall\" /></th>
-            <th>idProduit</th>
-            <th>reference</th>
-            <th>categorie</th>
-            <th>titre</th>
-            <th>description</th>
-            <th>couleur</th>
-            <th>taille</th>
-            <th>public</th>
-            <th>prix</th>
-            <th>stock</th>
+            <th>ID produit</th>
+            <th>Référence</th>
+            <th>Catégorie</th>
+            <th>Titre</th>
+            <th>Description</th>
+            <th>Couleur</th>
+            <th>Taille</th>
+            <th>Public</th>
+            <th>Prix</th>
+            <th>Stock</th>
+            <th colspan=\"3\">Actions</th>
           </thead>
           <tbody>
             ";
-        // line 28
+        // line 27
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable(($context["produits"] ?? $this->getContext($context, "produits")));
         foreach ($context['_seq'] as $context["_key"] => $context["pdt"]) {
-            // line 29
+            // line 28
             echo "            <tr>
               <td><input type=\"checkbox\" class=\"checkthis\" /></td>
+              <td><img class=\"card-img-top\" src=";
+            // line 30
+            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl(("/photo/" . $this->getAttribute($context["pdt"], "photo", array()))), "html", null, true);
+            echo " alt=\"\" height=\"80px\"></td>
               <td>";
             // line 31
             echo twig_escape_filter($this->env, $this->getAttribute($context["pdt"], "idProduit", array()), "html", null, true);
@@ -135,14 +141,18 @@ class __TwigTemplate_bf328edf91e3a416ad36fe63b379fef0010c58e41067e3da9246b9f536c
             // line 40
             echo twig_escape_filter($this->env, $this->getAttribute($context["pdt"], "stock", array()), "html", null, true);
             echo "</td>
-              <td>
-                <p data-placement=\"top\" data-toggle=\"tooltip\" title=\"Edit\"><button class=\"btn btn-primary btn-xs\"
-                    data-title=\"Edit\" data-toggle=\"modal\" data-target=\"#edit\"><span class=\"glyphicon glyphicon-pencil\"></span></button></p>
-              </td>
-              <td>
-                <p data-placement=\"top\" data-toggle=\"tooltip\" title=\"Delete\"><button class=\"btn btn-danger btn-xs\"
-                    data-title=\"Delete\" data-toggle=\"modal\" data-target=\"#delete\"><span class=\"glyphicon glyphicon-trash\"></span></button></p>
-              </td>
+              <td><a href=\"";
+            // line 41
+            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("produit", array("id" => $this->getAttribute($context["pdt"], "idProduit", array()))), "html", null, true);
+            echo "\" target=\"_blank\"><i class=\"far fa-eye\"></i></a></td>
+              <td><a href=\"";
+            // line 42
+            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("produit_update", array("id" => $this->getAttribute($context["pdt"], "idProduit", array()))), "html", null, true);
+            echo "\" target=\"_blank\"><i class=\"far fa-edit\"></i></a></td>
+              <td><a href=\"";
+            // line 43
+            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("produit_delete", array("id" => $this->getAttribute($context["pdt"], "idProduit", array()))), "html", null, true);
+            echo "\" target=\"_blank\"><i class=\"far fa-trash-alt\"></i></a></td>
             </tr>
           </tbody>
           ";
@@ -150,63 +160,11 @@ class __TwigTemplate_bf328edf91e3a416ad36fe63b379fef0010c58e41067e3da9246b9f536c
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['pdt'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 52
-        echo "
-        </table>
-        <div class=\"clearfix\"></div>
-        ";
-        // line 64
-        echo "      </div>
-    </div>
-  </div>
-</div>
-<div class=\"modal fade\" id=\"edit\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"edit\" aria-hidden=\"true\">
-  <div class=\"modal-dialog\">
-    <div class=\"modal-content\">
-      <div class=\"modal-header\">
-        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\"><span class=\"glyphicon glyphicon-remove\"
-            aria-hidden=\"true\"></span></button>
-        <h4 class=\"modal-title custom_align\" id=\"Heading\">Edit Your Detail</h4>
-      </div>
-      <div class=\"modal-body\">
-        <div class=\"form-group\">
-          <input class=\"form-control \" type=\"text\" placeholder=\"Mohsin\">
-        </div>
-        <div class=\"form-group\">
-          <input class=\"form-control \" type=\"text\" placeholder=\"Irshad\">
-        </div>
-        <div class=\"form-group\">
-          <textarea rows=\"2\" class=\"form-control\" placeholder=\"CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan\"></textarea>
-        </div>
-      </div>
-      <div class=\"modal-footer \">
-        <button type=\"button\" class=\"btn btn-warning btn-lg\" style=\"width: 100%;\"><span class=\"glyphicon glyphicon-ok-sign\"></span> Update</button>
+        // line 47
+        echo "        </table>
       </div>
     </div>
-    <!-- /.modal-content -->
   </div>
-  <!-- /.modal-dialog -->
-</div>
-<div class=\"modal fade\" id=\"delete\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"edit\" aria-hidden=\"true\">
-  <div class=\"modal-dialog\">
-    <div class=\"modal-content\">
-      <div class=\"modal-header\">
-        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\"><span class=\"glyphicon glyphicon-remove\"
-            aria-hidden=\"true\"></span></button>
-        <h4 class=\"modal-title custom_align\" id=\"Heading\">Delete this entry</h4>
-      </div>
-      <div class=\"modal-body\">
-        <div class=\"alert alert-danger\"><span class=\"glyphicon glyphicon-warning-sign\"></span> Are you sure you want to
-          delete this Record?</div>
-      </div>
-      <div class=\"modal-footer \">
-        <button type=\"button\" class=\"btn btn-success\"><span class=\"glyphicon glyphicon-ok-sign\"></span> Yes</button>
-        <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\"><span class=\"glyphicon glyphicon-remove\"></span> No</button>
-      </div>
-    </div>
-    <!-- /.modal-content -->
-  </div>
-  <!-- /.modal-dialog -->
 </div>
 ";
         
@@ -229,7 +187,7 @@ class __TwigTemplate_bf328edf91e3a416ad36fe63b379fef0010c58e41067e3da9246b9f536c
 
     public function getDebugInfo()
     {
-        return array (  159 => 64,  154 => 52,  136 => 40,  132 => 39,  128 => 38,  124 => 37,  120 => 36,  116 => 35,  112 => 34,  108 => 33,  104 => 32,  100 => 31,  96 => 29,  92 => 28,  68 => 6,  59 => 5,  41 => 3,  11 => 1,);
+        return array (  164 => 47,  154 => 43,  150 => 42,  146 => 41,  142 => 40,  138 => 39,  134 => 38,  130 => 37,  126 => 36,  122 => 35,  118 => 34,  114 => 33,  110 => 32,  106 => 31,  102 => 30,  98 => 28,  94 => 27,  73 => 9,  68 => 6,  59 => 5,  41 => 3,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -247,31 +205,31 @@ class __TwigTemplate_bf328edf91e3a416ad36fe63b379fef0010c58e41067e3da9246b9f536c
 {% block title %}{{ title }}{% endblock %}
 
 {% block content %}
-
-<h1>Je suis dans la page qui fait produit_show</h1>
-
 <div class=\"container\">
   <div class=\"row\">
     <div class=\"col-md-12\">
+    <a href=\"{{path('produit_add')}}\">Ajouter un artile</a>
       <div class=\"table-responsive\">
         <table id=\"mytable\" class=\"table table-bordred table-striped\">
           <thead>
             <th><input type=\"checkbox\" id=\"checkall\" /></th>
-            <th>idProduit</th>
-            <th>reference</th>
-            <th>categorie</th>
-            <th>titre</th>
-            <th>description</th>
-            <th>couleur</th>
-            <th>taille</th>
-            <th>public</th>
-            <th>prix</th>
-            <th>stock</th>
+            <th>ID produit</th>
+            <th>Référence</th>
+            <th>Catégorie</th>
+            <th>Titre</th>
+            <th>Description</th>
+            <th>Couleur</th>
+            <th>Taille</th>
+            <th>Public</th>
+            <th>Prix</th>
+            <th>Stock</th>
+            <th colspan=\"3\">Actions</th>
           </thead>
           <tbody>
             {% for pdt in produits %}
             <tr>
               <td><input type=\"checkbox\" class=\"checkthis\" /></td>
+              <td><img class=\"card-img-top\" src={{ asset('/photo/' ~ pdt.photo) }} alt=\"\" height=\"80px\"></td>
               <td>{{ pdt.idProduit }}</td>
               <td>{{ pdt.reference }}</td>
               <td>{{ pdt.categorie }}</td>
@@ -282,80 +240,16 @@ class __TwigTemplate_bf328edf91e3a416ad36fe63b379fef0010c58e41067e3da9246b9f536c
               <td>{{ pdt.public }}</td>
               <td>{{ pdt.prix }} €</td>
               <td>{{ pdt.stock }}</td>
-              <td>
-                <p data-placement=\"top\" data-toggle=\"tooltip\" title=\"Edit\"><button class=\"btn btn-primary btn-xs\"
-                    data-title=\"Edit\" data-toggle=\"modal\" data-target=\"#edit\"><span class=\"glyphicon glyphicon-pencil\"></span></button></p>
-              </td>
-              <td>
-                <p data-placement=\"top\" data-toggle=\"tooltip\" title=\"Delete\"><button class=\"btn btn-danger btn-xs\"
-                    data-title=\"Delete\" data-toggle=\"modal\" data-target=\"#delete\"><span class=\"glyphicon glyphicon-trash\"></span></button></p>
-              </td>
+              <td><a href=\"{{ path('produit', {'id': pdt.idProduit})}}\" target=\"_blank\"><i class=\"far fa-eye\"></i></a></td>
+              <td><a href=\"{{ path('produit_update', {'id': pdt.idProduit})}}\" target=\"_blank\"><i class=\"far fa-edit\"></i></a></td>
+              <td><a href=\"{{ path('produit_delete', {'id': pdt.idProduit})}}\" target=\"_blank\"><i class=\"far fa-trash-alt\"></i></a></td>
             </tr>
           </tbody>
           {% endfor %}
-
         </table>
-        <div class=\"clearfix\"></div>
-        {# <ul class=\"pagination pull-right\">
-          <li class=\"disabled\"><a href=\"#\"><span class=\"glyphicon glyphicon-chevron-left\"></span></a></li>
-          <li class=\"active\"><a href=\"#\">1</a></li>
-          <li><a href=\"#\">2</a></li>
-          <li><a href=\"#\">3</a></li>
-          <li><a href=\"#\">4</a></li>
-          <li><a href=\"#\">5</a></li>
-          <li><a href=\"#\"><span class=\"glyphicon glyphicon-chevron-right\"></span></a></li>
-        </ul> #}
       </div>
     </div>
   </div>
-</div>
-<div class=\"modal fade\" id=\"edit\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"edit\" aria-hidden=\"true\">
-  <div class=\"modal-dialog\">
-    <div class=\"modal-content\">
-      <div class=\"modal-header\">
-        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\"><span class=\"glyphicon glyphicon-remove\"
-            aria-hidden=\"true\"></span></button>
-        <h4 class=\"modal-title custom_align\" id=\"Heading\">Edit Your Detail</h4>
-      </div>
-      <div class=\"modal-body\">
-        <div class=\"form-group\">
-          <input class=\"form-control \" type=\"text\" placeholder=\"Mohsin\">
-        </div>
-        <div class=\"form-group\">
-          <input class=\"form-control \" type=\"text\" placeholder=\"Irshad\">
-        </div>
-        <div class=\"form-group\">
-          <textarea rows=\"2\" class=\"form-control\" placeholder=\"CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan\"></textarea>
-        </div>
-      </div>
-      <div class=\"modal-footer \">
-        <button type=\"button\" class=\"btn btn-warning btn-lg\" style=\"width: 100%;\"><span class=\"glyphicon glyphicon-ok-sign\"></span> Update</button>
-      </div>
-    </div>
-    <!-- /.modal-content -->
-  </div>
-  <!-- /.modal-dialog -->
-</div>
-<div class=\"modal fade\" id=\"delete\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"edit\" aria-hidden=\"true\">
-  <div class=\"modal-dialog\">
-    <div class=\"modal-content\">
-      <div class=\"modal-header\">
-        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\"><span class=\"glyphicon glyphicon-remove\"
-            aria-hidden=\"true\"></span></button>
-        <h4 class=\"modal-title custom_align\" id=\"Heading\">Delete this entry</h4>
-      </div>
-      <div class=\"modal-body\">
-        <div class=\"alert alert-danger\"><span class=\"glyphicon glyphicon-warning-sign\"></span> Are you sure you want to
-          delete this Record?</div>
-      </div>
-      <div class=\"modal-footer \">
-        <button type=\"button\" class=\"btn btn-success\"><span class=\"glyphicon glyphicon-ok-sign\"></span> Yes</button>
-        <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\"><span class=\"glyphicon glyphicon-remove\"></span> No</button>
-      </div>
-    </div>
-    <!-- /.modal-content -->
-  </div>
-  <!-- /.modal-dialog -->
 </div>
 {% endblock %}", "@Boutique/Admin/produit_show.html.twig", "C:\\wamp64\\www\\Boutique3\\src\\BoutiqueBundle\\Resources\\views\\Admin\\produit_show.html.twig");
     }

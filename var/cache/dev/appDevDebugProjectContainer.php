@@ -16,6 +16,6 @@ if (!\class_exists(appDevDebugProjectContainer::class, false)) {
 
 return new \ContainerVsp8yan\appDevDebugProjectContainer(array(
     'container.build_hash' => 'Vsp8yan',
-    'container.build_id' => '78255137',
-    'container.build_time' => 1544308536,
+    'container.build_id' => 'daf6587b',
+    'container.build_time' => 1544455991,
 ), __DIR__.\DIRECTORY_SEPARATOR.'ContainerVsp8yan');

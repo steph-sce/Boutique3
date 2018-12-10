@@ -52,15 +52,21 @@
       </div>
       <!-- Le menu -->
       <ul class="nav navbar-nav navbar-right">
-        <li><a class="nav-link" href="{{ path('produit_show') }}">Produit</a></li>
-        <li><a class="nav-link" href="{{ path('membre_show') }}">Membre</a></li>
-        <li><a class="nav-link" href="{{ path('commande_show') }}">Commande</a></li>
         <li><a class="nav-link" href="{{ path('profil') }}">Profil</a></li>
         <li><a class="nav-link" href="">Deconnexion</a></li>
         <li><a class="nav-link" href="{{ path('connexion') }}">Connexion</a></li>
         <li><a class="nav-link" href="{{ path('inscription') }}">Inscription</a></li>
-      </ul>
-    </div>
+        </li>
+        <ul class="nav navbar-nav navbar-right text-uppercase">
+          <!-- Visa drapdown-->
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <span class="caret"></span></a>
+            <ul class="dropdown-menu pull-left" role="menu">
+              <li><a class="nav-link" href="{{ path('produit_show') }}">Gestion des produits</a></li>
+              <li><a class="nav-link" href="{{ path('commande_show') }}">Gestion des commandes</a></li>
+              <li><a class="nav-link" href="{{ path('membre_show') }}">Gestion des membres</a></li>
+            </ul>
+        </ul>
   </nav>
   <!-- Page Content -->
   <div class="container" style="min-height: 80vh;">

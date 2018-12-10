@@ -185,7 +185,8 @@ class AdminController extends Controller
     // PRODUIT
 
     /**
-     * @Route("/admin/produit/show", name="produit_show")
+     * @Route("/admin/produit/show/", name="produit_show")
+     * Page qui affiche tous les produits sous forme d'un tableau
      */
     public function produitShowAction()
     {
@@ -201,15 +202,17 @@ class AdminController extends Controller
     }
 
     /**
-     * @Route("/admin/produit/delete/{id}", name="produit_delete")
+     * @Route("/admin/produit/delete/{id}/", name="produit_delete")
+     * Page qui permet de supprimer un produit 
      */
     public function produitDeleteAction($id)
     {
-        return $this->render('@Boutique/Admin/produit_show.html.twig', $id);
+        return $this->redirectToRoute('produit_show');
     }
 
     /**
-     * @Route("/admin/produit/update/{id}", name="produit_update")
+     * @Route("/admin/produit/update/{id}/", name="produit_update")
+     * Page qui permet de modifier un produit 
      */
     public function produitUpdateAction($id)
     {
@@ -217,7 +220,8 @@ class AdminController extends Controller
     }
 
     /**
-     * @Route("/admin/produit/add", name="produit_add")
+     * @Route("/admin/produit/add/", name="produit_add")
+     * Page qui permet de ajouter un produit 
      */
     public function produitAddAction()
     {
@@ -227,7 +231,8 @@ class AdminController extends Controller
     // MEMBRE
 
     /**
-     * @Route("/admin/membre/show", name="membre_show")
+     * @Route("/admin/membre/show/", name="membre_show")
+     * Page qui affiche tous les membres dans un tableau
      */
     public function membreShowAction()
     {
@@ -243,7 +248,8 @@ class AdminController extends Controller
     }
 
     /**
-     * @Route("/admin/membre/profil/{id}", name="membre_profil")
+     * @Route("/admin/membre/profil/{id}/", name="membre_profil")
+     * Page qui affiche le profil d'un membre dans un tableau
      */
     public function membreProfilAction($id)
     {
@@ -264,15 +270,17 @@ class AdminController extends Controller
     }
 
     /**
-     * @Route("/admin/membre/delete/{id}", name="membre_delete")
+     * @Route("/admin/membre/delete/{id}/", name="membre_delete")
+     * Page qui supprime un membre
      */
     public function membreDeleteAction($id)
     {
-        return $this->render('@Boutique/Admin/membre_show.html.twig', $id);
+        return $this->redirectToRoute('membre_show');
     }
 
     /**
-     * @Route("/admin/membre/update/{id}", name="membre_update")
+     * @Route("/admin/membre/update/{id}/", name="membre_update")
+     * Page qui affiche le template de modification d'un membre
      */
     public function membreUpdateAction($id)
     {
@@ -289,7 +297,8 @@ class AdminController extends Controller
     }
 
     /**
-     * @Route("/admin/membre/add", name="membre_add")
+     * @Route("/admin/membre/add/", name="membre_add")
+     * Page qui ajoute un membre
      */
     public function membreAddAction()
     {
@@ -303,7 +312,8 @@ class AdminController extends Controller
     // COMMANDE
 
     /**
-     * @Route("/admin/commande/show", name="commande_show")
+     * @Route("/admin/commande/show/", name="commande_show")
+     * Page qui affiche toutes les commandes dans un tableau
      */
     public function commandeShowAction()
     {
@@ -319,23 +329,26 @@ class AdminController extends Controller
     }
 
     /**
-     * @Route("/admin/commande/delete/{id}", name="commande_delete")
+     * @Route("/admin/commande/delete/{id}/", name="commande_delete")
+     * Page qui supprime une commande
      */
     public function commandeDeleteAction($id)
     {
-        return $this->render('@Boutique/Admin/commande_show.html.twig', $id);
+        return $this->redirectToRoute('commande_show');
     }
 
     /**
-     * @Route("/admin/commande/update/{id}", name="commande_update")
+     * @Route("/admin/commande/update/{id}/", name="commande_update")
+     * Page qui modifie une commandedans un formulaire
      */
     public function commandeUpdateAction($id)
     {
-        return $this->render('@Boutique/Admin/commande_form.html.twig', $id);
+        return $this->render('@Boutique/Admin/commande_form.html.twig');
     }
 
     /**
-     * @Route("/admin/commande/add", name="commande_add")
+     * @Route("/admin/commande/add/", name="commande_add")
+     * Page qui ajoute une commande
      */
     public function commandeAddAction()
     {

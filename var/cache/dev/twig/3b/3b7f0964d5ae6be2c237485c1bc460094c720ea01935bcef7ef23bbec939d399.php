@@ -94,90 +94,50 @@ $context["pdt"], "categorie", array())), "html", null, true);
         // line 14
         echo "  </div>
   <div class=\"col-md-9\">
-    <div class=\"row\">
-      ";
-        // line 17
-        if ((twig_length_filter($this->env, ($context["produits"] ?? $this->getContext($context, "produits"))) < 2)) {
-            echo " <div class=\"col-sm-4 mb-4\">
-        <div class=\"thumbnail\">
-          <a href=\"";
-            // line 19
-            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("produit", array("id" => $this->getAttribute($this->getAttribute(($context["produits"] ?? $this->getContext($context, "produits")), 0, array(), "array"), "idProduit", array()))), "html", null, true);
-            echo "\">
-            <img src=";
-            // line 20
-            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl(("/photo/" . $this->getAttribute($this->getAttribute(($context["produits"] ?? $this->getContext($context, "produits")), 0, array(), "array"), "photo", array()))), "html", null, true);
-            echo " alt=\"\" class=\"card-img-top\">
-          </a>
-          <div class=\"card-body\">
-            <h4>";
-            // line 23
-            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute(($context["produits"] ?? $this->getContext($context, "produits")), 0, array(), "array"), "titre", array()), "html", null, true);
-            echo "</h4>
-            <h5>";
-            // line 24
-            echo twig_escape_filter($this->env, twig_number_format_filter($this->env, $this->getAttribute($this->getAttribute(($context["produits"] ?? $this->getContext($context, "produits")), 0, array(), "array"), "prix", array()), 2, ",", ""), "html", null, true);
-            echo "€</h5>
-            <p>";
-            // line 25
-            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute(($context["produits"] ?? $this->getContext($context, "produits")), 0, array(), "array"), "description", array()), "html", null, true);
-            echo "</p>
-            <a href=\"";
-            // line 26
-            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("produit", array("id" => $this->getAttribute($this->getAttribute(($context["produits"] ?? $this->getContext($context, "produits")), 0, array(), "array"), "idProduit", array()))), "html", null, true);
-            echo "\" class=\"btn btn-outline-primary\">Voir le
-              produit</a>
-          </div>
-        </div>
-    </div>
+    <div class=\"row\">      
     ";
-        } else {
-            // line 32
-            echo "    ";
-            $context['_parent'] = $context;
-            $context['_seq'] = twig_ensure_traversable(($context["produits"] ?? $this->getContext($context, "produits")));
-            foreach ($context['_seq'] as $context["_key"] => $context["pdt"]) {
-                // line 33
-                echo "    <div class=\"col-sm-4 mb-4\">
+        // line 17
+        $context['_parent'] = $context;
+        $context['_seq'] = twig_ensure_traversable(($context["produits"] ?? $this->getContext($context, "produits")));
+        foreach ($context['_seq'] as $context["_key"] => $context["pdt"]) {
+            // line 18
+            echo "    <div class=\"col-sm-4 mb-4\">
       <div class=\"thumbnail\">
         <a href=\"";
-                // line 35
-                echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("produit", array("id" => $this->getAttribute($context["pdt"], "idProduit", array()))), "html", null, true);
-                echo "\">
+            // line 20
+            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("produit", array("id" => $this->getAttribute($context["pdt"], "idProduit", array()))), "html", null, true);
+            echo "\">
           <img src=";
-                // line 36
-                echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl(("/photo/" . $this->getAttribute($context["pdt"], "photo", array()))), "html", null, true);
-                echo " alt=\"\" class=\"card-img-top\">
+            // line 21
+            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl(("/photo/" . $this->getAttribute($context["pdt"], "photo", array()))), "html", null, true);
+            echo " alt=\"\" class=\"card-img-top\">
         </a>
         <div class=\"card-body\">
           <h4>";
-                // line 39
-                echo twig_escape_filter($this->env, $this->getAttribute($context["pdt"], "titre", array()), "html", null, true);
-                echo "</h4>
+            // line 24
+            echo twig_escape_filter($this->env, $this->getAttribute($context["pdt"], "titre", array()), "html", null, true);
+            echo "</h4>
           <h5>";
-                // line 40
-                echo twig_escape_filter($this->env, twig_number_format_filter($this->env, $this->getAttribute($context["pdt"], "prix", array()), 2, ",", ""), "html", null, true);
-                echo "€</h5>
+            // line 25
+            echo twig_escape_filter($this->env, twig_number_format_filter($this->env, $this->getAttribute($context["pdt"], "prix", array()), 2, ",", ""), "html", null, true);
+            echo "€</h5>
           <p>";
-                // line 41
-                echo twig_escape_filter($this->env, $this->getAttribute($context["pdt"], "description", array()), "html", null, true);
-                echo "</p>
+            // line 26
+            echo twig_escape_filter($this->env, $this->getAttribute($context["pdt"], "description", array()), "html", null, true);
+            echo "</p>
           <a href=\"";
-                // line 42
-                echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("produit", array("id" => $this->getAttribute($context["pdt"], "idProduit", array()))), "html", null, true);
-                echo "\" class=\"btn btn-outline-primary\">Voir le produit</a>
+            // line 27
+            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("produit", array("id" => $this->getAttribute($context["pdt"], "idProduit", array()))), "html", null, true);
+            echo "\" class=\"btn btn-outline-primary\">Voir le produit</a>
         </div>
       </div>
     </div>
     ";
-            }
-            $_parent = $context['_parent'];
-            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['pdt'], $context['_parent'], $context['loop']);
-            $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 47
-            echo "    ";
         }
-        // line 48
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['pdt'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 32
         echo "  </div>
 </div>
 </div><!-- .row -->
@@ -202,7 +162,7 @@ $context["pdt"], "categorie", array())), "html", null, true);
 
     public function getDebugInfo()
     {
-        return array (  181 => 48,  178 => 47,  167 => 42,  163 => 41,  159 => 40,  155 => 39,  149 => 36,  145 => 35,  141 => 33,  136 => 32,  127 => 26,  123 => 25,  119 => 24,  115 => 23,  109 => 20,  105 => 19,  100 => 17,  95 => 14,  87 => 12,  83 => 11,  79 => 10,  75 => 9,  68 => 6,  59 => 5,  41 => 3,  11 => 1,);
+        return array (  141 => 32,  130 => 27,  126 => 26,  122 => 25,  118 => 24,  112 => 21,  108 => 20,  104 => 18,  100 => 17,  95 => 14,  87 => 12,  83 => 11,  79 => 10,  75 => 9,  68 => 6,  59 => 5,  41 => 3,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -230,22 +190,7 @@ $context["pdt"], "categorie", array())), "html", null, true);
     {% endfor %}
   </div>
   <div class=\"col-md-9\">
-    <div class=\"row\">
-      {% if produits|length < 2 %} <div class=\"col-sm-4 mb-4\">
-        <div class=\"thumbnail\">
-          <a href=\"{{ path('produit', {'id' : produits[0].idProduit}) }}\">
-            <img src={{ asset('/photo/' ~ produits[0].photo) }} alt=\"\" class=\"card-img-top\">
-          </a>
-          <div class=\"card-body\">
-            <h4>{{ produits[0].titre }}</h4>
-            <h5>{{ produits[0].prix | number_format(2, ',', '')}}€</h5>
-            <p>{{ produits[0].description }}</p>
-            <a href=\"{{ path('produit', {'id' : produits[0].idProduit}) }}\" class=\"btn btn-outline-primary\">Voir le
-              produit</a>
-          </div>
-        </div>
-    </div>
-    {% else %}
+    <div class=\"row\">      
     {% for pdt in produits %}
     <div class=\"col-sm-4 mb-4\">
       <div class=\"thumbnail\">
@@ -261,7 +206,6 @@ $context["pdt"], "categorie", array())), "html", null, true);
       </div>
     </div>
     {% endfor %}
-    {% endif %}
   </div>
 </div>
 </div><!-- .row -->
