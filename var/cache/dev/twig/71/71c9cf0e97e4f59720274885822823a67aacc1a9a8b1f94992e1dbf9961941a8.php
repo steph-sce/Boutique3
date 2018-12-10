@@ -65,12 +65,11 @@ class __TwigTemplate_45ca6543ac15d5d3f14b4845ce78b81f63abb0c609d0fa6b3859fd10252
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "content"));
 
         // line 6
-        echo "
-<div class=\"container\">
+        echo "<div class=\"container\">
   <div class=\"row\">
     <div class=\"col-md-12\">
     <a href=\"";
-        // line 10
+        // line 9
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("commande_add");
         echo "\">Ajouter une commande</a>
       <div class=\"table-responsive\">
@@ -85,39 +84,39 @@ class __TwigTemplate_45ca6543ac15d5d3f14b4845ce78b81f63abb0c609d0fa6b3859fd10252
           </thead>
           <tbody>
             ";
-        // line 22
+        // line 21
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable(($context["commandes"] ?? $this->getContext($context, "commandes")));
         foreach ($context['_seq'] as $context["_key"] => $context["cmd"]) {
-            // line 23
+            // line 22
             echo "            <tr>
               <td><input type=\"checkbox\" class=\"checkthis\" /></td>
               <td>";
-            // line 25
+            // line 24
             echo twig_escape_filter($this->env, $this->getAttribute($context["cmd"], "idCommande", array()), "html", null, true);
             echo "</td>
               <td>";
-            // line 26
+            // line 25
             echo twig_escape_filter($this->env, $this->getAttribute($context["cmd"], "idMembre", array()), "html", null, true);
             echo "</td>
               <td>";
-            // line 27
+            // line 26
             echo twig_escape_filter($this->env, $this->getAttribute($context["cmd"], "montant", array()), "html", null, true);
             echo "</td>
               <td>";
-            // line 28
+            // line 27
             echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute($context["cmd"], "dateEnregistrement", array()), "Y-m-d"), "html", null, true);
             echo "</td>
               <td>";
-            // line 29
+            // line 28
             echo twig_escape_filter($this->env, $this->getAttribute($context["cmd"], "etat", array()), "html", null, true);
             echo "</td>
               <td><a href=\"";
-            // line 30
+            // line 29
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("commande_update", array("id" => $this->getAttribute($context["cmd"], "idCommande", array()))), "html", null, true);
             echo "\" target=\"_blank\"><i class=\"far fa-edit\"></i></a></td>
               <td><a href=\"";
-            // line 31
+            // line 30
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("commande_delete", array("id" => $this->getAttribute($context["cmd"], "idCommande", array()))), "html", null, true);
             echo "\" target=\"_blank\"><i class=\"far fa-trash-alt\"></i></a></td>
             </tr>
@@ -127,7 +126,7 @@ class __TwigTemplate_45ca6543ac15d5d3f14b4845ce78b81f63abb0c609d0fa6b3859fd10252
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['cmd'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 35
+        // line 34
         echo "
         </table>
       </div>
@@ -155,7 +154,7 @@ class __TwigTemplate_45ca6543ac15d5d3f14b4845ce78b81f63abb0c609d0fa6b3859fd10252
 
     public function getDebugInfo()
     {
-        return array (  131 => 35,  121 => 31,  117 => 30,  113 => 29,  109 => 28,  105 => 27,  101 => 26,  97 => 25,  93 => 23,  89 => 22,  74 => 10,  68 => 6,  59 => 5,  41 => 3,  11 => 1,);
+        return array (  130 => 34,  120 => 30,  116 => 29,  112 => 28,  108 => 27,  104 => 26,  100 => 25,  96 => 24,  92 => 22,  88 => 21,  73 => 9,  68 => 6,  59 => 5,  41 => 3,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -173,7 +172,6 @@ class __TwigTemplate_45ca6543ac15d5d3f14b4845ce78b81f63abb0c609d0fa6b3859fd10252
 {% block title %}{{ title }}{% endblock %}
 
 {% block content %}
-
 <div class=\"container\">
   <div class=\"row\">
     <div class=\"col-md-12\">

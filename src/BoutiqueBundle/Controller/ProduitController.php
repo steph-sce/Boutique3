@@ -36,13 +36,6 @@ class ProduitController extends Controller
         $repository = $this->getDoctrine()->getRepository(Produit::class);
         $article = $repository->findBy(['categorie' => $categorie]);
 
-        // $em = $this->getDoctrine()->getManager();
-        // $article = $em->getRepository('BoutiqueBundle:Produit')->findBy(
-        //     array(
-        //         'categorie' => $categorie
-        //     )
-        // );
-
         $params = array(
             'produits' => $article,
             'title' => 'Categorie: ' . $categorie,
@@ -68,7 +61,7 @@ class ProduitController extends Controller
         $params = array(
             'produits' => $produit,
             // 'categories' => $reference,
-            'title' => $produit -> getTitre()
+            'title' => $produit->getTitre(),
         );
 
         return $this->render('@Boutique/Produit/produit.html.twig', $params);

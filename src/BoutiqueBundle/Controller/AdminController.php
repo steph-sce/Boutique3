@@ -6,173 +6,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+
 use BoutiqueBundle\Entity\Membre;
 use BoutiqueBundle\Entity\Produit;
+use BoutiqueBundle\Entity\Commande;
 
 class AdminController extends Controller
 {
-//     //1: Récupérer les infos des produits
-//     //SELECT * FROM Produit
-//     public $produits = array(
-//         0 => array(
-//             'idProduit' => 1,
-//             'reference' => 'ABC',
-//             'categorie' => 'pantalon',
-//             'titre' => 'Super pantalon',
-//             'description' => 'Ce pantalon est idéal pour l\'été',
-//             'public' => 'm',
-//             'prix' => 30.50,
-//             'stock' => 150,
-//             'photo' => 'image2.jpg',
-//             'couleur' => 'blanc',
-//             'taille' => 'L',
-//         ),
-//         1 => array(
-//             'idProduit' => 2,
-//             'reference' => 'DEF',
-//             'categorie' => 'robe',
-//             'titre' => 'Super robe',
-//             'description' => 'Super petite robe',
-//             'public' => 'f',
-//             'prix' => 79.90,
-//             'stock' => 70,
-//             'photo' => 'image4.jpg',
-//             'couleur' => 'noir',
-//             'taille' => 'M',
-//         ),
-//         3 => array(
-//             'idProduit' => 3,
-//             'reference' => 'DEF',
-//             'categorie' => 'tshirt',
-//             'titre' => 'Super T-shirt',
-//             'description' => 'Super T-shirt blanc et rouge',
-//             'public' => 'm',
-//             'prix' => 19.70,
-//             'stock' => 40,
-//             'photo' => 'image5.jpg',
-//             'couleur' => 'blanc et rouge',
-//             'taille' => 'S',
-//         )
-//     );
-
-//     //2: Récupérer toutes les catégories
-//     //SELECT DISTINCT categorie FROM produit
-//     public $produit = array(
-//         0 => array(
-//             'idProduit' => 3,
-//             'reference' => 'DEF',
-//             'categorie' => 'pantalon',
-//             'titre' => 'Super ensemble',
-//             'description' => 'Super ensemble',
-//             'public' => 'f',
-//             'prix' => 50,
-//             'stock' => 10,
-//             'photo' => 'image1.jpg',
-//             'couleur' => 'bleu',
-//             'taille' => 'L',
-//         ),
-//     );
-
-// //1: Récupérer les infos des membres
-//     //SELECT * FROM membre
-//     public $membres = array(
-//         0 => array(
-//             'idMembre' => 1,
-//             'pseudo' => 'A.R',
-//             'password' => 'a.rebel',
-//             'nom' => 'Rebel',
-//             'prenom' => 'Aranud',
-//             'email' => 'a.rebel@gmail.com',
-//             'civilite' => 'm',
-//             'ville' => 'Colombes',
-//             'codePostal' => '92000',
-//             'adresse' => '1 rue du puit',
-//             'statut' => 0,
-//         ),
-//         1 => array(
-//             'idMembre' => 2,
-//             'pseudo' => 'J.D',
-//             'password' => 'j.doe',
-//             'nom' => 'Doe',
-//             'prenom' => 'John',
-//             'email' => 'j.doe@gmail.com',
-//             'civilite' => 'm',
-//             'ville' => 'Paris',
-//             'codePostal' => '75000',
-//             'adresse' => '28 rue de Montmartre',
-//             'statut' => 1,
-//         ),
-//         3 => array(
-//             'idMembre' => 3,
-//             'pseudo' => 'D.D',
-//             'password' => 'd.dupont',
-//             'nom' => 'Diane',
-//             'prenom' => 'Dupont',
-//             'email' => 'd.dupont@gmail.com',
-//             'civilite' => 'f',
-//             'ville' => 'Fontenay sous Bois',
-//             'codePostal' => '94000',
-//             'adresse' => '55 grande rue',
-//             'statut' => 0,
-//         ),
-//     );
-
-//     //2: Récupérer un membre
-//     //SELECT DISTINCT categorie FROM produit
-//     public $membre = array(
-//         0 => array(
-//             'idMembre' => 4,
-//             'pseudo' => 'S.S',
-//             'password' => 's.soucheyre',
-//             'nom' => 'Soucheyre',
-//             'prenom' => 'Stéphane',
-//             'email' => 's.soucheyre@gmail.com',
-//             'civilite' => 'm',
-//             'ville' => 'Chartres',
-//             'codePostal' => '28000',
-//             'adresse' => '76 rue de la mairie',
-//             'statut' => 1,
-//         ),
-//     );
-
-//     //1: Récupérer les infos des produits
-//     //SELECT * FROM Produit
-//     public $commandes = array(
-//         0 => array(
-//             'idCommande' => 1,
-//             'idMembre' => 2,
-//             'montant' => 100,
-//             'dateEnregistrement' => '01/01/2000',
-//             'etat' => '0',
-//         ),
-//         1 => array(
-//             'idCommande' => 2,
-//             'idMembre' => 3,
-//             'montant' => 90,
-//             'dateEnregistrement' => '02/02/2010',
-//             'etat' => 0,
-//         ),
-//         3 => array(
-//             'idCommande' => 3,
-//             'idMembre' => 1,
-//             'montant' => 80,
-//             'dateEnregistrement' => '03/03/2018',
-//             'etat' => 1,
-//         ),
-//     );
-
-//     //2: Récupérer toutes les catégories
-//     //SELECT DISTINCT categorie FROM produit
-//     public $commande = array(
-//         0 => array(
-//             'idCommande' => 1,
-//             'idMembre' => 'ABC',
-//             'montant' => 30,
-//             'dateEnregistrement' => '01/02/2003',
-//             'etat' => 0,
-//         ),
-//     );
-
     //ADMIN
     /**
      * @Route("/login/", name="login")
@@ -190,8 +30,8 @@ class AdminController extends Controller
      */
     public function produitShowAction()
     {
-        $em = $this->getDoctrine()->getManager();
-        $produits = $em->getRepository('BoutiqueBundle:Produit')->findAll();
+        $repository = $this->getDoctrine()->getRepository(Produit::class);
+        $produits = $repository->findAll();
 
         $params = array(
             'produits' => $produits,
@@ -216,7 +56,14 @@ class AdminController extends Controller
      */
     public function produitUpdateAction($id)
     {
-        return $this->render('@Boutique/Admin/produit_form.html.twig', $id);
+        $repository = $this->getDoctrine()->getRepository(Produit::class);
+        $produit = $repository->findBy(['idProduit' => $id]);
+
+        $params = array (
+            'produits' => $produit
+        );
+
+        return $this->render('@Boutique/Admin/produit_form.html.twig', $params);
     }
 
     /**
@@ -236,8 +83,8 @@ class AdminController extends Controller
      */
     public function membreShowAction()
     {
-        $em = $this->getDoctrine()->getManager();
-        $membres = $em->getRepository('BoutiqueBundle:Membre')->findAll();
+        $repository = $this->getDoctrine()->getRepository(Membre::class);
+        $membres = $repository->findAll();
 
         $params = array(
             'membres' => $membres,
@@ -253,18 +100,13 @@ class AdminController extends Controller
      */
     public function membreProfilAction($id)
     {
-        $em = $this->getDoctrine()->getManager();
-        $membre = $em->getRepository('BoutiqueBundle:Membre')->findBy(
-            array(
-                'idMembre' => $id
-            )
-        );
+        $repository = $this->getDoctrine()->getRepository(Membre::class);
+        $membre = $repository->findBy(['idMembre' => $id]);
 
         $params = array(
             'membres' => $membre,
             'title' => 'membre_profil'
         );
-
 
         return new Response($this->render('@Boutique/Admin/membre_show.html.twig', $params));
     }
@@ -284,13 +126,12 @@ class AdminController extends Controller
      */
     public function membreUpdateAction($id)
     {
-        $em = $this->getDoctrine()->getManager();
-        $membre = $em->getRepository('BoutiqueBundle:Membre')->find($id);
+        $repository = $this->getDoctrine()->getRepository(Membre::class);
+        $membre = $repository->find($id);
 
         $params = array(
             'membre' => $membre,
-            'title' => 'Modifier un membre.',
-            'disable' => 0
+            'title' => 'Modifier un membre.'
         );
 
         return $this->render('@Boutique/Admin/membre_form.html.twig', $params);
@@ -301,7 +142,7 @@ class AdminController extends Controller
      * Page qui ajoute un membre
      */
     public function membreAddAction()
-    {
+    {        
         $params = array(
             'title' => 'Ajouter un membre.'
         );
@@ -316,9 +157,9 @@ class AdminController extends Controller
      * Page qui affiche toutes les commandes dans un tableau
      */
     public function commandeShowAction()
-    {
-        $em = $this->getDoctrine()->getManager();
-        $commandes = $em->getRepository('BoutiqueBundle:Commande')->findAll();
+    {        
+        $repository = $this->getDoctrine()->getRepository(Commande::class);
+        $commandes = $repository->findAll();
 
         $params = array(
             'commandes' => $commandes,
@@ -343,6 +184,13 @@ class AdminController extends Controller
      */
     public function commandeUpdateAction($id)
     {
+        $repository = $this->getDoctrine()->getRepository(Commande::class);
+        $commande = $repository->findBy(['idCommande' => $id]);
+
+        $params = array (
+            'commande' => $commande
+        );
+
         return $this->render('@Boutique/Admin/commande_form.html.twig');
     }
 

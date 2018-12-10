@@ -71,7 +71,7 @@ class __TwigTemplate_bf328edf91e3a416ad36fe63b379fef0010c58e41067e3da9246b9f536c
     <a href=\"";
         // line 9
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("produit_add");
-        echo "\">Ajouter un artile</a>
+        echo "\">Ajouter un article</a>
       <div class=\"table-responsive\">
         <table id=\"mytable\" class=\"table table-bordred table-striped\">
           <thead>
@@ -208,7 +208,7 @@ class __TwigTemplate_bf328edf91e3a416ad36fe63b379fef0010c58e41067e3da9246b9f536c
 <div class=\"container\">
   <div class=\"row\">
     <div class=\"col-md-12\">
-    <a href=\"{{path('produit_add')}}\">Ajouter un artile</a>
+    <a href=\"{{path('produit_add')}}\">Ajouter un article</a>
       <div class=\"table-responsive\">
         <table id=\"mytable\" class=\"table table-bordred table-striped\">
           <thead>
