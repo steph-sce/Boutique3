@@ -65,70 +65,13 @@ class __TwigTemplate_982ab1dc1d0f74b0ad9e2490c6c0ba95e6dec5a895ad3e020ded5b8c77f
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "content"));
 
         // line 6
-        echo "
-<h1>";
-        // line 7
+        echo "\t<h1>";
         echo twig_escape_filter($this->env, ($context["title"] ?? $this->getContext($context, "title")), "html", null, true);
         echo "</h1>
-
-<form>
-\t<div class=\"form-group\"> <!-- idMembre -->
-\t\t<label for=\"full_name_id\" class=\"control-label\">idMembre</label>
-\t\t<input type=\"text\" class=\"form-control\" id=\"full_name_id\" name=\"iMembre\" placeholder=\"idMembre\">
-\t</div>\t
-
-\t<div class=\"form-group\"> <!-- nom -->
-\t\t<label for=\"street1_id\" class=\"control-label\">nom</label>
-\t\t<input type=\"text\" class=\"form-control\" id=\"street1_id\" name=\"nom\" placeholder=\"nom\">
-\t</div>\t\t\t\t\t
-\t\t\t\t\t\t\t
-\t<div class=\"form-group\"> <!-- prenom -->
-\t\t<label for=\"street2_id\" class=\"control-label\">prenom</label>
-\t\t<input type=\"text\" class=\"form-control\" id=\"street2_id\" name=\"prenom\" placeholder=\"prenom\">
-\t</div>\t
-
-\t<div class=\"form-group\"> <!-- email-->
-\t\t<label for=\"city_id\" class=\"control-label\">email</label>
-\t\t<input type=\"text\" class=\"form-control\" id=\"city_id\" name=\"email\" placeholder=\"email\">
-\t</div>\t\t\t\t\t\t\t\t\t
-\t\t
-\t<div class=\"form-group\"> <!-- civilite-->
-\t\t<label for=\"zip_id\" class=\"control-label\">civilite</label>
-\t\t<input type=\"text\" class=\"form-control\" id=\"zip_id\" name=\"civilite\" placeholder=\"civilite\">
-\t</div>\t\t
-\t\t
-\t<div class=\"form-group\"> <!-- ville-->
-\t\t<label for=\"zip_id\" class=\"control-label\">ville</label>
-\t\t<input type=\"text\" class=\"form-control\" id=\"zip_id\" name=\"ville\" placeholder=\"ville\">
-\t</div>\t
-  \t
-\t<div class=\"form-group\"> <!-- codePostal-->
-\t\t<label for=\"zip_id\" class=\"control-label\">codePostal</label>
-\t\t<input type=\"text\" class=\"form-control\" id=\"zip_id\" name=\"codePostal\" placeholder=\"codePostal\">
-\t</div>\t
-  \t
-\t<div class=\"form-group\"> <!-- adresse-->
-\t\t<label for=\"zip_id\" class=\"control-label\">adresse</label>
-\t\t<input type=\"text\" class=\"form-control\" id=\"zip_id\" name=\"addresse\" placeholder=\"adresse\">
-\t</div>\t
-  \t
-\t<div class=\"form-group\"> <!-- statut-->
-\t\t<label for=\"zip_id\" class=\"control-label\">statut</label>
-\t\t<input type=\"text\" class=\"form-control\" id=\"zip_id\" name=\"statut\" placeholder=\"statut\">
-\t</div>\t
-  \t
-\t<div class=\"form-group\"> <!-- password-->
-\t\t<label for=\"zip_id\" class=\"control-label\">password</label>
-\t\t<input type=\"text\" class=\"form-control\" id=\"zip_id\" name=\"password\" placeholder=\"password\">
-\t</div>\t
-
-\t<div class=\"form-group\"> <!-- Submit Button -->
-\t\t<button type=\"submit\" class=\"btn btn-primary\">Ajouter</button>
-\t\t<button type=\"submit\" class=\"btn btn-warning\">Modifier</button>
-\t</div>     
-\t
-</form>\t\t\t
-
+\t";
+        // line 7
+        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["membreForm"] ?? $this->getContext($context, "membreForm")), 'form');
+        echo "
 ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -150,7 +93,7 @@ class __TwigTemplate_982ab1dc1d0f74b0ad9e2490c6c0ba95e6dec5a895ad3e020ded5b8c77f
 
     public function getDebugInfo()
     {
-        return array (  71 => 7,  68 => 6,  59 => 5,  41 => 3,  11 => 1,);
+        return array (  73 => 7,  68 => 6,  59 => 5,  41 => 3,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -168,67 +111,8 @@ class __TwigTemplate_982ab1dc1d0f74b0ad9e2490c6c0ba95e6dec5a895ad3e020ded5b8c77f
 {% block title %}{{ title }}{% endblock %}
 
 {% block content %}
-
-<h1>{{title}}</h1>
-
-<form>
-\t<div class=\"form-group\"> <!-- idMembre -->
-\t\t<label for=\"full_name_id\" class=\"control-label\">idMembre</label>
-\t\t<input type=\"text\" class=\"form-control\" id=\"full_name_id\" name=\"iMembre\" placeholder=\"idMembre\">
-\t</div>\t
-
-\t<div class=\"form-group\"> <!-- nom -->
-\t\t<label for=\"street1_id\" class=\"control-label\">nom</label>
-\t\t<input type=\"text\" class=\"form-control\" id=\"street1_id\" name=\"nom\" placeholder=\"nom\">
-\t</div>\t\t\t\t\t
-\t\t\t\t\t\t\t
-\t<div class=\"form-group\"> <!-- prenom -->
-\t\t<label for=\"street2_id\" class=\"control-label\">prenom</label>
-\t\t<input type=\"text\" class=\"form-control\" id=\"street2_id\" name=\"prenom\" placeholder=\"prenom\">
-\t</div>\t
-
-\t<div class=\"form-group\"> <!-- email-->
-\t\t<label for=\"city_id\" class=\"control-label\">email</label>
-\t\t<input type=\"text\" class=\"form-control\" id=\"city_id\" name=\"email\" placeholder=\"email\">
-\t</div>\t\t\t\t\t\t\t\t\t
-\t\t
-\t<div class=\"form-group\"> <!-- civilite-->
-\t\t<label for=\"zip_id\" class=\"control-label\">civilite</label>
-\t\t<input type=\"text\" class=\"form-control\" id=\"zip_id\" name=\"civilite\" placeholder=\"civilite\">
-\t</div>\t\t
-\t\t
-\t<div class=\"form-group\"> <!-- ville-->
-\t\t<label for=\"zip_id\" class=\"control-label\">ville</label>
-\t\t<input type=\"text\" class=\"form-control\" id=\"zip_id\" name=\"ville\" placeholder=\"ville\">
-\t</div>\t
-  \t
-\t<div class=\"form-group\"> <!-- codePostal-->
-\t\t<label for=\"zip_id\" class=\"control-label\">codePostal</label>
-\t\t<input type=\"text\" class=\"form-control\" id=\"zip_id\" name=\"codePostal\" placeholder=\"codePostal\">
-\t</div>\t
-  \t
-\t<div class=\"form-group\"> <!-- adresse-->
-\t\t<label for=\"zip_id\" class=\"control-label\">adresse</label>
-\t\t<input type=\"text\" class=\"form-control\" id=\"zip_id\" name=\"addresse\" placeholder=\"adresse\">
-\t</div>\t
-  \t
-\t<div class=\"form-group\"> <!-- statut-->
-\t\t<label for=\"zip_id\" class=\"control-label\">statut</label>
-\t\t<input type=\"text\" class=\"form-control\" id=\"zip_id\" name=\"statut\" placeholder=\"statut\">
-\t</div>\t
-  \t
-\t<div class=\"form-group\"> <!-- password-->
-\t\t<label for=\"zip_id\" class=\"control-label\">password</label>
-\t\t<input type=\"text\" class=\"form-control\" id=\"zip_id\" name=\"password\" placeholder=\"password\">
-\t</div>\t
-
-\t<div class=\"form-group\"> <!-- Submit Button -->
-\t\t<button type=\"submit\" class=\"btn btn-primary\">Ajouter</button>
-\t\t<button type=\"submit\" class=\"btn btn-warning\">Modifier</button>
-\t</div>     
-\t
-</form>\t\t\t
-
+\t<h1>{{title}}</h1>
+\t{{ form(membreForm)}}
 {% endblock %}", "@Boutique/Admin/membre_form.html.twig", "C:\\wamp64\\www\\Boutique3\\src\\BoutiqueBundle\\Resources\\views\\Admin\\membre_form.html.twig");
     }
 }

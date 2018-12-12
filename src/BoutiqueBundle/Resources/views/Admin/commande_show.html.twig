@@ -12,8 +12,9 @@
           <thead>
             <th><input type="checkbox" id="checkall" /></th>
             <th>ID commande</th>
-            <th>ID membre</th>
+            <th>Client</th>
             <th>Montant</th>
+            <th>Ville de livraison</th>
             <th>Date d'enregistrement</th>
             <th>Etat</th>
           </thead>
@@ -23,7 +24,8 @@
                 <tr>
                   <td><input type="checkbox" class="checkthis" /></td>
                   <td>{{ cmd.idCommande }}</td>
-                  <td>{{ cmd.idMembre }}</td>
+                  <td>{{ cmd.membre.prenom }} - {{ cmd.membre.nom }}</td>
+                  <td>{{ cmd.membre.ville }}</td>
                   <td>{{ cmd.montant }}</td>
                   <td>{{ cmd.dateEnregistrement|date('Y-m-d') }}</td>
                   <td>{{ cmd.etat }}</td>

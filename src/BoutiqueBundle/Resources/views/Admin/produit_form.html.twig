@@ -1,8 +1,22 @@
 {% extends 'layout.html.twig' %}
 
-{% block content %}
+{% block title %}{{ title }}{% endblock %}
 
-<h1>Je suis dans la page qui fait produit_form</h1>
+{% block content %}
+	<h1>{{title}}</h1>
+	{{ form_start(produitForm)}}
+
+		{{ form_row(produitForm.reference)}}
+		{{ form_row(produitForm.categorie)}}
+		{{ form_row(produitForm.titre)}}
+		{{ form_row(produitForm.description)}}
+		{% if photo is defined and photo is not null %}
+		<img src="{{ asset('/photo/'~photo) }}" width="150"/>
+		{% endif %}
+		{{ form_row(produitForm.file)}}
+
+	{{ form_rest(produitForm)}}
+	{{ form_end(produitForm)}}
+
 
 {% endblock %}
-

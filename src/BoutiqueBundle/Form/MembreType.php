@@ -48,17 +48,6 @@ class MembreType extends AbstractType
                     )),
                 ),
             ))
-            ->add('password', PasswordType::class, array(
-                'required' => false,
-                'constraints' => array(
-                    new Assert\NotBlank,
-                    new Assert\Regex(array(
-                        'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).{8,20}$/',
-                        'message' => 'Veuillez renseigner un Mot de passe de 8 caractères mini contentant une maj, et un chiffre, et un caractère spécial',
-                    )),
-                ),
-
-            ))
             ->add('prenom', TextType::class, array(
                 'required' => false,
                 'constraints' => array(
@@ -138,10 +127,30 @@ class MembreType extends AbstractType
                     'placeholder' => 'Votre Adresse',
                     'class' => 'form-control',
                 ),
-            ))
-            ->add('save', SubmitType::class, array(
+            ));
+        if ($options['admin']) {
+            $builder->add('statut', ChoiceType::class, array('choices' => array(
+                'Membre' => 0,
+                'Admin' => 1,
+            )));
+        } else {
+            $builder
+                ->add('password', PasswordType::class, array(
+                    'required' => false,
+                    'constraints' => array(
+                        new Assert\NotBlank,
+                        new Assert\Regex(array(
+                            'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).{8,20}$/',
+                            'message' => 'Veuillez renseigner un Mot de passe de 8 caractères mini contentant une maj, et un chiffre, et un caractère spécial',
+                        )),
+                    ),
+
+                ));
+        }
+        $builder
+            ->add('inscription', SubmitType::class, array(
                 'attr' => array(
-                    'class' => "btn-success",
+                    'class' => "btn-primary",
                 ),
             ));
     }
@@ -153,6 +162,7 @@ class MembreType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'BoutiqueBundle\Entity\Membre',
+            'admin' => false,
         ));
     }
 

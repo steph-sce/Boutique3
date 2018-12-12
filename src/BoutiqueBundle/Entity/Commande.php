@@ -3,6 +3,7 @@
 namespace BoutiqueBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use BoutiqueBundle\Entity\Membre;
 
 /**
  * Membre
@@ -12,6 +13,24 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Commande
 {
+    /**
+     * Une commande a un seul membre, on dit qu'ici on est coté propiétaire
+     * @ORM\ManyToOne(targetEntity="Membre", inversedBy="commandes")
+     * @ORM\JoinColumn(name="idMembre", referencedColumnName="idMembre")
+     */
+    private $membre;
+
+    public function getMembre()
+    {
+        return $this->membre;
+    }
+
+    public function setMembre(Membre $membre)
+    {
+        $this->membre = $membre;
+        return $this;
+    }
+
     /**
      * @var integer
      *

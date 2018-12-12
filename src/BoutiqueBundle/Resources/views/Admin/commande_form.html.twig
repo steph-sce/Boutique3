@@ -1,7 +1,8 @@
 {% extends 'layout.html.twig' %}
 
+{% block title %}{{ title }}{% endblock %}
+
 {% block content %}
-
-<h1>Je suis dans la page qui fait commande_form</h1>
-
+	<h1>{{title}}</h1>
+	{{ form(commandeForm)}}
 {% endblock %}

@@ -3,6 +3,8 @@
 namespace BoutiqueBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Membre
@@ -12,6 +14,29 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Membre
 {
+    /**
+     * Un membre à (0 ou) plusieurs commandes
+     * @ORM\OneToMany(targetEntity="Commande", mappedBy="membre")
+     */
+    private $commandes;
+
+    public function __construct()
+    {
+        $this->commandes = new ArrayCollection();
+        //On met un objet de la classe array collection dans $commandes
+    }
+
+    public function getCommandes()
+    {
+        return $this->commandes;
+    }
+
+    public function setCommandes(ArrayCollection $commandes)
+    {
+        $this->commandes = $commandes;
+        return $this;
+    }
+
     /**
      * @var integer
      *
@@ -89,7 +114,7 @@ class Membre
      *
      * @ORM\Column(name="statut", type="integer", nullable=false)
      */
-    private $statut=0; //valeur par défaut
+    private $statut = 0; //valeur par défaut
     // private $statut;
 
     /**

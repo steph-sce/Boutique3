@@ -3,13 +3,6 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block content %}
-<h1>{{title}}</h1>
-<div class="row">
-	<div class="col-md-4">
-		<div class="form-group">
-			{# Version simple de formulaire, il s'affiche entièrement et seul #}
-			{{ form(membreForm)}}
-		</div>
-	</div>
-</div>
+	<h1>{{title}}</h1>
+	{{ form(membreForm)}}
 {% endblock %}

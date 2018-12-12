@@ -77,49 +77,56 @@ class __TwigTemplate_45ca6543ac15d5d3f14b4845ce78b81f63abb0c609d0fa6b3859fd10252
           <thead>
             <th><input type=\"checkbox\" id=\"checkall\" /></th>
             <th>ID commande</th>
-            <th>ID membre</th>
+            <th>Client</th>
             <th>Montant</th>
+            <th>Ville de livraison</th>
             <th>Date d'enregistrement</th>
             <th>Etat</th>
           </thead>
           ";
-        // line 20
+        // line 21
         if (($context["commandes"] ?? $this->getContext($context, "commandes"))) {
-            // line 21
+            // line 22
             echo "            ";
             $context['_parent'] = $context;
             $context['_seq'] = twig_ensure_traversable(($context["commandes"] ?? $this->getContext($context, "commandes")));
             foreach ($context['_seq'] as $context["_key"] => $context["cmd"]) {
-                // line 22
+                // line 23
                 echo "              <tbody>
                 <tr>
                   <td><input type=\"checkbox\" class=\"checkthis\" /></td>
                   <td>";
-                // line 25
+                // line 26
                 echo twig_escape_filter($this->env, $this->getAttribute($context["cmd"], "idCommande", array()), "html", null, true);
                 echo "</td>
                   <td>";
-                // line 26
-                echo twig_escape_filter($this->env, $this->getAttribute($context["cmd"], "idMembre", array()), "html", null, true);
-                echo "</td>
-                  <td>";
                 // line 27
-                echo twig_escape_filter($this->env, $this->getAttribute($context["cmd"], "montant", array()), "html", null, true);
+                echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["cmd"], "membre", array()), "prenom", array()), "html", null, true);
+                echo " - ";
+                echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["cmd"], "membre", array()), "nom", array()), "html", null, true);
                 echo "</td>
                   <td>";
                 // line 28
-                echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute($context["cmd"], "dateEnregistrement", array()), "Y-m-d"), "html", null, true);
+                echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["cmd"], "membre", array()), "ville", array()), "html", null, true);
                 echo "</td>
                   <td>";
                 // line 29
+                echo twig_escape_filter($this->env, $this->getAttribute($context["cmd"], "montant", array()), "html", null, true);
+                echo "</td>
+                  <td>";
+                // line 30
+                echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute($context["cmd"], "dateEnregistrement", array()), "Y-m-d"), "html", null, true);
+                echo "</td>
+                  <td>";
+                // line 31
                 echo twig_escape_filter($this->env, $this->getAttribute($context["cmd"], "etat", array()), "html", null, true);
                 echo "</td>
                   <td><a href=\"";
-                // line 30
+                // line 32
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("commande_update", array("id" => $this->getAttribute($context["cmd"], "idCommande", array()))), "html", null, true);
                 echo "\" target=\"_blank\"><i class=\"far fa-edit\"></i></a></td>
                   <td><a href=\"";
-                // line 31
+                // line 33
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("commande_delete", array("id" => $this->getAttribute($context["cmd"], "idCommande", array()))), "html", null, true);
                 echo "\" target=\"_blank\"><i class=\"far fa-trash-alt\"></i></a></td>
                 </tr>
@@ -129,16 +136,16 @@ class __TwigTemplate_45ca6543ac15d5d3f14b4845ce78b81f63abb0c609d0fa6b3859fd10252
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['cmd'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 35
+            // line 37
             echo "          ";
         } else {
-            // line 36
+            // line 38
             echo "            <tr>
               <th colspan=\"7\" class=\"align-center\">Aucune commande<th>
             <tr>
           ";
         }
-        // line 40
+        // line 42
         echo "        </table>
       </div>
     </div>
@@ -165,7 +172,7 @@ class __TwigTemplate_45ca6543ac15d5d3f14b4845ce78b81f63abb0c609d0fa6b3859fd10252
 
     public function getDebugInfo()
     {
-        return array (  142 => 40,  136 => 36,  133 => 35,  123 => 31,  119 => 30,  115 => 29,  111 => 28,  107 => 27,  103 => 26,  99 => 25,  94 => 22,  89 => 21,  87 => 20,  73 => 9,  68 => 6,  59 => 5,  41 => 3,  11 => 1,);
+        return array (  149 => 42,  143 => 38,  140 => 37,  130 => 33,  126 => 32,  122 => 31,  118 => 30,  114 => 29,  110 => 28,  104 => 27,  100 => 26,  95 => 23,  90 => 22,  88 => 21,  73 => 9,  68 => 6,  59 => 5,  41 => 3,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -192,8 +199,9 @@ class __TwigTemplate_45ca6543ac15d5d3f14b4845ce78b81f63abb0c609d0fa6b3859fd10252
           <thead>
             <th><input type=\"checkbox\" id=\"checkall\" /></th>
             <th>ID commande</th>
-            <th>ID membre</th>
+            <th>Client</th>
             <th>Montant</th>
+            <th>Ville de livraison</th>
             <th>Date d'enregistrement</th>
             <th>Etat</th>
           </thead>
@@ -203,7 +211,8 @@ class __TwigTemplate_45ca6543ac15d5d3f14b4845ce78b81f63abb0c609d0fa6b3859fd10252
                 <tr>
                   <td><input type=\"checkbox\" class=\"checkthis\" /></td>
                   <td>{{ cmd.idCommande }}</td>
-                  <td>{{ cmd.idMembre }}</td>
+                  <td>{{ cmd.membre.prenom }} - {{ cmd.membre.nom }}</td>
+                  <td>{{ cmd.membre.ville }}</td>
                   <td>{{ cmd.montant }}</td>
                   <td>{{ cmd.dateEnregistrement|date('Y-m-d') }}</td>
                   <td>{{ cmd.etat }}</td>

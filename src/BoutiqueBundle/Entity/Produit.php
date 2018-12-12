@@ -3,15 +3,17 @@
 namespace BoutiqueBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Produit
- * 
+ *
  * @ORM\Table(name="produit")
  * @ORM\Entity(repositoryClass="BoutiqueBundle\Repository\ProduitRepository")
  */
 class Produit
 {
+
     /**
      * @ORM\Column(name="idProduit", type="integer")
      * @ORM\Id
@@ -58,6 +60,7 @@ class Produit
      * @ORM\Column(name="photo", type="string", length=255)
      */
     private $photo;
+    private $file; //cette propiété n'est pas mappé parce qu'elle n'a pas vocation à être enregistré
 
     /**
      * @ORM\Column(name="prix", type="float")
@@ -177,6 +180,50 @@ class Produit
         return $this;
     }
 
+    // file
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    public function setFile(UploadedFile $file = null)
+    {
+        $this->file = $file;
+        return $this;
+    }
+
+    public function uploadPhoto()
+    {
+        $nom_photo = $this->file->getClientOriginalName();
+        $new_nom_photo = $this->renameFile($nom_photo);
+        $chemin_dir_photo = $this->dirPhoto();
+
+        //1: enregistrer en BDD le $new_nom_photo
+        $this->photo = $new_nom_photo;
+
+        //2: Déplacer la photo dans son répertoire définitif
+        $this->file->move($chemin_dir_photo, $new_nom_photo);
+        //Move deplace la photo dna sle dossier indiqué en arg1, et la renomme selon l'arg2
+    }
+
+    public function renameFile($nom)
+    {
+        return 'photo_' . time() . '_' . rand(1, 9999) . '-' . $nom;
+    }
+
+    public function dirPhoto()
+    {
+        return __DIR__ . '/../../../web/photo/';
+    }
+
+    public function removePhoto()
+    {
+        $file = $this->dirPhoto() . $this->getPhoto();
+        if ($file) {
+            unlink($file);
+        }
+    }
+
     // prix
     public function getPrix()
     {
@@ -200,4 +247,5 @@ class Produit
         $this->stock = $arg;
         return $this;
     }
+
 }

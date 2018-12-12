@@ -3,7 +3,26 @@
 
 {% block content %}
 
-<h1>Je suis dans la page qui fait membre_profil</h1>
+<h1>{{title}}</h1>
+<h2>Info du client</h2>
+<ul>
+<li>Nom: <b>{{membre.nom}}</b></li>
+<li>Prénom: <b>{{membre.prenom}}</b></li>
+<li>Email: <b>{{membre.nom}}</b></li>
+<li>Adresse: <b>{{membre.adresse}}</b></li>
+<li>Code postal: <b>{{membre.codePostal}}</b></li>
+<li>Ville: <b>{{membre.ville}}</b></li>
+</ul>
+
+<h2>Commande du client</h2>
+{% for cde in membre.commandes %}
+Commande N°{{cde.IdCommande}}
+<ul>
+<li>Date: <b>{{cde.dateEnregistrement | date("d/m/y")}}</b></li>
+<li>Montant: <b>{{cde.montant | number_format(2, ',', ' ')}}€</b></li>
+<li>Etat: <b>{{cde.etat}}</b></li>
+</ul>
+{% endfor %}
 
 {% endblock %}
 

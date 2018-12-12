@@ -5,13 +5,17 @@ namespace BoutiqueBundle\Controller;
 use BoutiqueBundle\Entity\Commande;
 use BoutiqueBundle\Entity\Membre;
 use BoutiqueBundle\Entity\Produit;
-use Symfony\Component\Routing\Annotation\Route;
+use BoutiqueBundle\Form\CommandeType;
+use BoutiqueBundle\Form\MembreType;
+use BoutiqueBundle\Form\ProduitType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
 class AdminController extends Controller
 {
+
     //ADMIN
     /**
      * @Route("/login/", name="login")
@@ -52,6 +56,7 @@ class AdminController extends Controller
 
         //On peut le supprimer via le manager
         $em->remove($produit);
+        $produit = removePhoto();
         //remove prepare la suppression
         $em->flush();
         //fluh eécute les actions qui étaient préparée
@@ -70,16 +75,33 @@ class AdminController extends Controller
     {
         //comme doctrine travail avec des objets, il faut recuperer l'objet en question
         $em = $this->getDoctrine()->getManager();
-        $produit = $em -> find(Produit::class, $id);
+        $produit = $em->find(Produit::class, $id);
+        $old_photo = $produit->getFile();
+        $nom_photo = $produit->getPhoto();
 
-        $produit->setReference('nouvelle reference');
+        $form = $this->createForm(ProduitType::class, $produit);
+        //3 - Récupérer les infos saisie et modifier l'entrée
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->persist($produit);
+            if ($produit->getFile() != null) {
+                $produit->removePhoto();
+                $produit->uploadPhoto();
+            }
+            $em->flush();
 
-        $em->persist($produit);
-        $em->flush();
+            $request->getSession()->getFlashBag()->add('success', 'Le produit ' . $produit->getIdProduit() . ' a été modifié avec succès.');
 
-        $request->getSession()->getFlashBag()->add("success", 'Le produit ' . $produit->getTitre() . ' a bien été modifié!');
+            return $this->redirectToRoute('produit_show');
+        }
+        //4 - Afficher le formulaire dans la vue
+        $params = array(
+            'produitForm' => $form->createView(),
+            'title' => 'Modifier le produit N° ' . $produit->getIdProduit(),
+            'photo' => $nom_photo,
+        );
 
-        return $this->redirectToRoute('produit_show');
+        return $this->render('@Boutique/Admin/produit_form.html.twig', $params);
     }
 
     /**
@@ -91,28 +113,31 @@ class AdminController extends Controller
         //Doctrine travaillent avec des objets...pour insrer une entrée en BDD...Il faut un objet
         $produit = new Produit;
 
-        $produit
-            ->setReference('ABC')
-            ->setCategorie('Tshirt')
-            ->setTitre('Super Tshirt')
-            ->setPublic('m')
-            ->setTaille('L')
-            ->setCouleur('rouge')
-            ->setPrix(12.45)
-            ->setStock(150)
-            ->setDescription('Super tshirt pour l\'été!')
-            ->setPhoto('produit5.jpg');
+        $form = $this->createForm(ProduitType::class, $produit);
 
-        $em = $this->getDoctrine()->getManager();
+        $form->handleRequest($request);
 
-        //Ajoute un objet
-        $em->persist($produit);
-        $produit->setReference('BCD');
-        $em->flush();
+        if ($form->isSubmitted() && $form->isValid()) {
 
-        $request->getSession()->getFlashBag()->add("success", 'Le produit ' . $produit->getTitre() . ' a bien été ajouté!');
+            $em = $this->getDoctrine()->getManager();
 
-        return $this->redirectToRoute('produit_show');
+            //Ajoute un objet
+            $em->persist($produit);
+            $produit->uploadPhoto();
+            //la function uploadPhoto() va récupérer le fichier uploadé dans le form sous forme d'un objet UploadedFile, va la renommer, va l'enregistrer sur le serveur et va affecter à la propriété de $produit le nouveau nom de la photo qui sera enregistré en BDD
+            $em->flush();
+
+            $request->getSession()->getFlashBag()->add("success", 'Le produit ' . $produit->getTitre() . ' a bien été ajouté!');
+
+            return $this->redirectToRoute('produit_show');
+        }
+
+        $params = array(
+            'produitForm' => $form->createView(),
+            'title' => 'Ajouter un produit',
+        );
+
+        return $this->render('@Boutique/Admin/produit_form.html.twig', $params);
     }
 
     // MEMBRE
@@ -140,23 +165,32 @@ class AdminController extends Controller
      */
     public function membreProfilAction($id)
     {
-        $repository = $this->getDoctrine()->getRepository(Membre::class);
-        $membre = $repository->findBy(['idMembre' => $id]);
+        $repoMembre = $this->getDoctrine()->getRepository(Membre::class);
+        $membre = $repoMembre->find($id);
 
         $params = array(
-            'membres' => $membre,
-            'title' => 'membre_profil',
+            'membre' => $membre,
+            'title' => 'Fiche client ' . $membre->getPrenom() . '' . $membre->getNom()
         );
 
-        return new Response($this->render('@Boutique/Admin/membre_show.html.twig', $params));
+        return $this->render('@Boutique/Admin/membre_profil.html.twig', $params);
     }
 
     /**
      * @Route("/admin/membre/delete/{id}/", name="membre_delete")
      * Page qui supprime un membre
      */
-    public function membreDeleteAction($id)
+    public function membreDeleteAction($id, Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
+        $membre = $em->find(Membre::class, $id);
+
+        $em->remove($membre);
+        $em->flush();
+
+        $session = $request->getSession();
+        $session->getFlashBag()->add("success", 'Le membre ' . $id . ' a bien été supprimé!');
+
         return $this->redirectToRoute('membre_show');
     }
 
@@ -164,14 +198,27 @@ class AdminController extends Controller
      * @Route("/admin/membre/update/{id}/", name="membre_update")
      * Page qui affiche le template de modification d'un membre
      */
-    public function membreUpdateAction($id)
+    public function membreUpdateAction($id, Request $request)
     {
-        $repository = $this->getDoctrine()->getRepository(Membre::class);
-        $membre = $repository->find($id);
+        $em = $this->getDoctrine()->getManager();
+        //1 - Récupérer l'objet $membre en fonction de l'ID
+        $membre = $em->find(Membre::class, $id);
+        //2 - Récupérer et hydrater le formulaire
+        $form = $this->createForm(MembreType::class, $membre, array('admin' => array('admin' => true)));
+        //3 - Récupérer les infos saisie et modifier l'entrée
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->persist($membre);
+            $em->flush();
 
+            $request->getSession()->getFlashBag()->add('success', 'Le membre ' . $membre->getIdMembre() . ' a été modifié avec succès.');
+
+            return $this->redirectToRoute('membre_show');
+        }
+        //4 - Afficher le formulaire dans la vue
         $params = array(
-            'membre' => $membre,
-            'title' => 'Modifier un membre.',
+            'membreForm' => $form->createView(),
+            'title' => 'Modifier le membre N° ' . $membre->getIdMembre(),
         );
 
         return $this->render('@Boutique/Admin/membre_form.html.twig', $params);
@@ -181,10 +228,31 @@ class AdminController extends Controller
      * @Route("/admin/membre/add/", name="membre_add")
      * Page qui ajoute un membre
      */
-    public function membreAddAction()
+    public function membreAddAction(Request $request)
     {
+        //Doctrine travaillent avec des objets...pour insrer une entrée en BDD...Il faut un objet
+        $membre = new Membre;
+
+        $form = $this->createForm(ProduitType::class, $produit);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+
+            //Ajoute un objet
+            $em->persist($membre);
+            $em->flush();
+
+            $request->getSession()->getFlashBag()->add("success", 'Le membre ' . $produit->getTitre() . ' a bien été ajouté!');
+
+            return $this->redirectToRoute('membre_show');
+        }
+
         $params = array(
-            'title' => 'Ajouter un membre.',
+            'membreForm' => $form->createView(),
+            'title' => 'Ajouter un membre',
         );
 
         return $this->render('@Boutique/Admin/membre_form.html.twig', $params);
@@ -213,8 +281,17 @@ class AdminController extends Controller
      * @Route("/admin/commande/delete/{id}/", name="commande_delete")
      * Page qui supprime une commande
      */
-    public function commandeDeleteAction($id)
+    public function commandeDeleteAction($id, Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
+        $commande = $em->find(Commande::class, $id);
+
+        $em->remove($commande);
+        $em->flush();
+
+        $session = $request->getSession();
+        $session->getFlashBag()->add("success", 'La commande ' . $id . ' a bien été supprimé!');
+
         return $this->redirectToRoute('commande_show');
     }
 
@@ -222,24 +299,63 @@ class AdminController extends Controller
      * @Route("/admin/commande/update/{id}/", name="commande_update")
      * Page qui modifie une commandedans un formulaire
      */
-    public function commandeUpdateAction($id)
+    public function commandeUpdateAction($id, Request $request)
     {
-        $repository = $this->getDoctrine()->getRepository(Commande::class);
-        $commande = $repository->findBy(['idCommande' => $id]);
+        $em = $this->getDoctrine()->getManager();
+        //1 - Récupérer l'objet $membre en fonction de l'ID
+        $commande = $em->find(Commande::class, $id);
+        //2 - Récupérer et hydrater le formulaire
+        $form = $this->createForm(CommandeType::class, $commande);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->persist($commande);
+            $em->flush();
+
+            $request->getSession()->getFlashBag()->add("success", 'La commande ' . $commande->getIdCommande() . ' a bien été ajouté!');
+
+            return $this->redirectToRoute('commande_show');
+        }
 
         $params = array(
-            'commande' => $commande,
+            'commandeForm' => $form->createView(),
+            'title' => 'Modification commande ' . $id,
         );
 
-        return $this->render('@Boutique/Admin/commande_form.html.twig');
+        return $this->render('@Boutique/Admin/commande_form.html.twig', $params);
     }
 
     /**
      * @Route("/admin/commande/add/", name="commande_add")
      * Page qui ajoute une commande
      */
-    public function commandeAddAction()
+    public function commandeAddAction(Request $request)
     {
-        return $this->render('@Boutique/Admin/commande_form.html.twig');
+        $commande = new Commande;
+
+        $form = $this->createForm(CommandeType::class, $commande);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+
+            //Ajoute un objet
+            $em->persist($commande);
+            $em->flush();
+
+            $request->getSession()->getFlashBag()->add("success", 'Le commande ' . $commande->getIdMembre() . ' a bien été ajouté!');
+
+            return $this->redirectToRoute('commande_show');
+        }
+
+        $params = array(
+            'commandeForm' => $form->createView(),
+            'title' => 'Ajouter une commande',
+        );
+
+        return $this->render('@Boutique/Admin/commande_form.html.twig', $params);
     }
+
 }
