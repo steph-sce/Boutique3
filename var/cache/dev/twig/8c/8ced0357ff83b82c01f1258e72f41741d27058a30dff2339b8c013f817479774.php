@@ -50,30 +50,28 @@ class __TwigTemplate_f9234f7403ce83bbd3c9e03214deca422d4293a8134d57504648ce8d994
 
 <body>
   <!-- Navigation -->
-  ";
-        // line 47
-        echo "  <nav class=\"navbar navbar-inverse\">
+  <nav class=\"navbar navbar-inverse\">
     <div class=\"container-fluid\">
       <div class=\"navbar-header\">
         <!-- La marque -->
         <a class=\"navbar-brand\" href=\"";
-        // line 51
+        // line 25
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("accueil");
         echo "\">MA BOUTIQUE</a>
       </div>
       <!-- Le menu -->
       <ul class=\"nav navbar-nav navbar-right\">
         <li><a class=\"nav-link\" href=\"";
-        // line 55
+        // line 29
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("profil");
         echo "\">Profil</a></li>
         <li><a class=\"nav-link\" href=\"\">Deconnexion</a></li>
         <li><a class=\"nav-link\" href=\"";
-        // line 57
+        // line 31
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("connexion");
         echo "\">Connexion</a></li>
         <li><a class=\"nav-link\" href=\"";
-        // line 58
+        // line 32
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("inscription");
         echo "\">Inscription</a></li>
         </li>
@@ -83,15 +81,15 @@ class __TwigTemplate_f9234f7403ce83bbd3c9e03214deca422d4293a8134d57504648ce8d994
             <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Admin <span class=\"caret\"></span></a>
             <ul class=\"dropdown-menu pull-left\" role=\"menu\">
               <li><a class=\"nav-link\" href=\"";
-        // line 65
+        // line 39
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("produit_show");
         echo "\">Gestion des produits</a></li>
               <li><a class=\"nav-link\" href=\"";
-        // line 66
+        // line 40
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("commande_show");
         echo "\">Gestion des commandes</a></li>
               <li><a class=\"nav-link\" href=\"";
-        // line 67
+        // line 41
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("membre_show");
         echo "\">Gestion des membres</a></li>
             </ul>
@@ -102,11 +100,42 @@ class __TwigTemplate_f9234f7403ce83bbd3c9e03214deca422d4293a8134d57504648ce8d994
     <div class=\"row\">
       <div class=\"col-12\">
         <!-- ici le contenu spécifique de chaque page -->
-
         ";
-        // line 77
+        // line 50
+        $context['_parent'] = $context;
+        $context['_seq'] = twig_ensure_traversable($this->getAttribute($this->getAttribute($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "session", array()), "flashbag", array()), "get", array(0 => "success"), "method"));
+        foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
+            // line 51
+            echo "          <div class=\"alert alert-success\">";
+            echo twig_escape_filter($this->env, $context["message"], "html", null, true);
+            echo "</div>
+        ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['message'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 53
+        echo "
+        ";
+        // line 54
+        $context['_parent'] = $context;
+        $context['_seq'] = twig_ensure_traversable($this->getAttribute($this->getAttribute($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "session", array()), "flashbag", array()), "get", array(0 => "error"), "method"));
+        foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
+            // line 55
+            echo "          <div class=\"alert alert-danger\">";
+            echo twig_escape_filter($this->env, $context["message"], "html", null, true);
+            echo "</div>
+        ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['message'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 57
+        echo "
+        ";
+        // line 58
         $this->displayBlock('content', $context, $blocks);
-        // line 79
+        // line 60
         echo "
       </div><!-- .col-12  -->
     </div><!-- .row -->
@@ -151,7 +180,7 @@ class __TwigTemplate_f9234f7403ce83bbd3c9e03214deca422d4293a8134d57504648ce8d994
 
     }
 
-    // line 77
+    // line 58
     public function block_content($context, array $blocks = array())
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
@@ -160,7 +189,7 @@ class __TwigTemplate_f9234f7403ce83bbd3c9e03214deca422d4293a8134d57504648ce8d994
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "content"));
 
-        // line 78
+        // line 59
         echo "        ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -182,7 +211,7 @@ class __TwigTemplate_f9234f7403ce83bbd3c9e03214deca422d4293a8134d57504648ce8d994
 
     public function getDebugInfo()
     {
-        return array (  164 => 78,  155 => 77,  138 => 6,  110 => 79,  108 => 77,  95 => 67,  91 => 66,  87 => 65,  77 => 58,  73 => 57,  68 => 55,  61 => 51,  55 => 47,  47 => 16,  34 => 6,  27 => 1,);
+        return array (  193 => 59,  184 => 58,  167 => 6,  139 => 60,  137 => 58,  134 => 57,  125 => 55,  121 => 54,  118 => 53,  109 => 51,  105 => 50,  93 => 41,  89 => 40,  85 => 39,  75 => 32,  71 => 31,  66 => 29,  59 => 25,  47 => 16,  34 => 6,  27 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -215,32 +244,6 @@ class __TwigTemplate_f9234f7403ce83bbd3c9e03214deca422d4293a8134d57504648ce8d994
 
 <body>
   <!-- Navigation -->
-  {# <nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">
-    <div class=\"container\">
-      <!-- La marque -->
-      <a class=\"navbar-brand\" href=\"{{ path('accueil') }}\">MA BOUTIQUE</a>
-
-      <!-- Le burger -->
-      <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#nav1\" aria-controls=\"navbarResponsive\"
-        aria-expanded=\"false\" aria-label=\"Toggle navigation\">
-        <span class=\"navbar-toggler-icon\"></span>
-      </button>
-
-      <!-- Le menu -->
-      <div class=\"collapse navbar-collapse\" id=\"nav1\">
-        <ul class=\"navbar-nav ml-auto\">
-          <li><a class=\"nav-link\" href=\"\">Boutique</a></li>
-          <li><a class=\"nav-link\" href=\"{{ path('produit_show') }}\">Produit</a></li>
-          <li><a class=\"nav-link\" href=\"{{ path('membre_show') }}\">Membre</a></li>
-          <li><a class=\"nav-link\" href=\"{{ path('commande_show') }}\">Commande</a></li>
-          <li><a class=\"nav-link\" href=\"\">Profil</a></li>
-          <li><a class=\"nav-link\" href=\"\">Deconnexion</a></li>
-          <li><a class=\"nav-link\" href=\"\">Connexion</a></li>
-          <li><a class=\"nav-link\" href=\"\">Inscription</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav> #}
   <nav class=\"navbar navbar-inverse\">
     <div class=\"container-fluid\">
       <div class=\"navbar-header\">
@@ -270,6 +273,13 @@ class __TwigTemplate_f9234f7403ce83bbd3c9e03214deca422d4293a8134d57504648ce8d994
     <div class=\"row\">
       <div class=\"col-12\">
         <!-- ici le contenu spécifique de chaque page -->
+        {% for message in app.session.flashbag.get('success') %}
+          <div class=\"alert alert-success\">{{ message }}</div>
+        {% endfor %}
+
+        {% for message in app.session.flashbag.get('error') %}
+          <div class=\"alert alert-danger\">{{ message }}</div>
+        {% endfor %}
 
         {% block content %}
         {% endblock %}

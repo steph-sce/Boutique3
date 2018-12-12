@@ -2,14 +2,13 @@
 
 namespace BoutiqueBundle\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use BoutiqueBundle\Entity\Commande;
+use BoutiqueBundle\Entity\Membre;
+use BoutiqueBundle\Entity\Produit;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-
-use BoutiqueBundle\Entity\Membre;
-use BoutiqueBundle\Entity\Produit;
-use BoutiqueBundle\Entity\Commande;
 
 class AdminController extends Controller
 {
@@ -35,7 +34,7 @@ class AdminController extends Controller
 
         $params = array(
             'produits' => $produits,
-            'title' => 'produit_show'
+            'title' => 'produit_show',
         );
 
         return $this->render('@Boutique/Admin/produit_show.html.twig', $params);
@@ -43,36 +42,77 @@ class AdminController extends Controller
 
     /**
      * @Route("/admin/produit/delete/{id}/", name="produit_delete")
-     * Page qui permet de supprimer un produit 
+     * Page qui permet de supprimer un produit
      */
-    public function produitDeleteAction($id)
+    public function produitDeleteAction($id, Request $request)
     {
+        //Pour supprimer une entrer, comme doctrine travaille avec des objets
+        $em = $this->getDoctrine()->getManager();
+        $produit = $em->find(Produit::class, $id);
+
+        //On peut le supprimer via le manager
+        $em->remove($produit);
+        //remove prepare la suppression
+        $em->flush();
+        //fluh eécute les actions qui étaient préparée
+
+        $session = $request->getSession();
+        $session->getFlashBag()->add("success", 'Le produit ' . $id . ' a bien été supprimé!');
+
         return $this->redirectToRoute('produit_show');
     }
 
     /**
      * @Route("/admin/produit/update/{id}/", name="produit_update")
-     * Page qui permet de modifier un produit 
+     * Page qui permet de modifier un produit
      */
-    public function produitUpdateAction($id)
+    public function produitUpdateAction($id, Request $request)
     {
-        $repository = $this->getDoctrine()->getRepository(Produit::class);
-        $produit = $repository->findBy(['idProduit' => $id]);
+        //comme doctrine travail avec des objets, il faut recuperer l'objet en question
+        $em = $this->getDoctrine()->getManager();
+        $produit = $em -> find(Produit::class, $id);
 
-        $params = array (
-            'produits' => $produit
-        );
+        $produit->setReference('nouvelle reference');
 
-        return $this->render('@Boutique/Admin/produit_form.html.twig', $params);
+        $em->persist($produit);
+        $em->flush();
+
+        $request->getSession()->getFlashBag()->add("success", 'Le produit ' . $produit->getTitre() . ' a bien été modifié!');
+
+        return $this->redirectToRoute('produit_show');
     }
 
     /**
      * @Route("/admin/produit/add/", name="produit_add")
-     * Page qui permet de ajouter un produit 
+     * Page qui permet de ajouter un produit
      */
-    public function produitAddAction()
+    public function produitAddAction(Request $request)
     {
-        return $this->render('@Boutique/Admin/produit_form.html.twig');
+        //Doctrine travaillent avec des objets...pour insrer une entrée en BDD...Il faut un objet
+        $produit = new Produit;
+
+        $produit
+            ->setReference('ABC')
+            ->setCategorie('Tshirt')
+            ->setTitre('Super Tshirt')
+            ->setPublic('m')
+            ->setTaille('L')
+            ->setCouleur('rouge')
+            ->setPrix(12.45)
+            ->setStock(150)
+            ->setDescription('Super tshirt pour l\'été!')
+            ->setPhoto('produit5.jpg');
+
+        $em = $this->getDoctrine()->getManager();
+
+        //Ajoute un objet
+        $em->persist($produit);
+        $produit->setReference('BCD');
+        $em->flush();
+
+        $request->getSession()->getFlashBag()->add("success", 'Le produit ' . $produit->getTitre() . ' a bien été ajouté!');
+
+        return $this->redirectToRoute('produit_show');
     }
 
     // MEMBRE
@@ -88,10 +128,10 @@ class AdminController extends Controller
 
         $params = array(
             'membres' => $membres,
-            'title' => 'membre_show'
+            'title' => 'membre_show',
         );
 
-        return new Response($this->render('@Boutique/Admin/membre_show.html.twig', $params));
+        return $this->render('@Boutique/Admin/membre_show.html.twig', $params);
     }
 
     /**
@@ -105,7 +145,7 @@ class AdminController extends Controller
 
         $params = array(
             'membres' => $membre,
-            'title' => 'membre_profil'
+            'title' => 'membre_profil',
         );
 
         return new Response($this->render('@Boutique/Admin/membre_show.html.twig', $params));
@@ -131,7 +171,7 @@ class AdminController extends Controller
 
         $params = array(
             'membre' => $membre,
-            'title' => 'Modifier un membre.'
+            'title' => 'Modifier un membre.',
         );
 
         return $this->render('@Boutique/Admin/membre_form.html.twig', $params);
@@ -142,9 +182,9 @@ class AdminController extends Controller
      * Page qui ajoute un membre
      */
     public function membreAddAction()
-    {        
+    {
         $params = array(
-            'title' => 'Ajouter un membre.'
+            'title' => 'Ajouter un membre.',
         );
 
         return $this->render('@Boutique/Admin/membre_form.html.twig', $params);
@@ -157,13 +197,13 @@ class AdminController extends Controller
      * Page qui affiche toutes les commandes dans un tableau
      */
     public function commandeShowAction()
-    {        
+    {
         $repository = $this->getDoctrine()->getRepository(Commande::class);
         $commandes = $repository->findAll();
 
         $params = array(
             'commandes' => $commandes,
-            'title' => 'Commandes'
+            'title' => 'Commandes',
         );
 
         return $this->render('@Boutique/Admin/commande_show.html.twig', $params);
@@ -187,8 +227,8 @@ class AdminController extends Controller
         $repository = $this->getDoctrine()->getRepository(Commande::class);
         $commande = $repository->findBy(['idCommande' => $id]);
 
-        $params = array (
-            'commande' => $commande
+        $params = array(
+            'commande' => $commande,
         );
 
         return $this->render('@Boutique/Admin/commande_form.html.twig');

@@ -77,7 +77,7 @@ class __TwigTemplate_9a24289ee593e71b7e4972eab643b614d78ab63162a2610b89edd4b0ae7
     ";
         // line 10
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable(($context["produits"] ?? $this->getContext($context, "produits")));
+        $context['_seq'] = twig_ensure_traversable(($context["categorie"] ?? $this->getContext($context, "categorie")));
         foreach ($context['_seq'] as $context["_key"] => $context["pdt"]) {
             // line 11
             echo "    <a href=\"";
@@ -184,7 +184,7 @@ $context["pdt"], "categorie", array())), "html", null, true);
 <div class=\"row\">
   <div class=\"col-md-3\">
     <a href=\"{{ path('accueil') }}\" class=\"list-group-item\">Tous</a>
-    {% for pdt in produits %}
+    {% for pdt in categorie %}
     <a href=\"{{ path('categorie', {'categorie' : pdt.categorie}) }}\" class=\"list-group-item list-group-item-action\">{{
       pdt.categorie | capitalize }}</a>
     {% endfor %}

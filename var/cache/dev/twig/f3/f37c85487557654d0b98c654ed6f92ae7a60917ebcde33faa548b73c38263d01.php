@@ -76,6 +76,7 @@ class __TwigTemplate_bf328edf91e3a416ad36fe63b379fef0010c58e41067e3da9246b9f536c
         <table id=\"mytable\" class=\"table table-bordred table-striped\">
           <thead>
             <th><input type=\"checkbox\" id=\"checkall\" /></th>
+            <th>Photo</th>
             <th>ID produit</th>
             <th>Référence</th>
             <th>Catégorie</th>
@@ -90,67 +91,67 @@ class __TwigTemplate_bf328edf91e3a416ad36fe63b379fef0010c58e41067e3da9246b9f536c
           </thead>
           <tbody>
             ";
-        // line 27
+        // line 28
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable(($context["produits"] ?? $this->getContext($context, "produits")));
         foreach ($context['_seq'] as $context["_key"] => $context["pdt"]) {
-            // line 28
+            // line 29
             echo "            <tr>
               <td><input type=\"checkbox\" class=\"checkthis\" /></td>
               <td><img class=\"card-img-top\" src=";
-            // line 30
+            // line 31
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl(("/photo/" . $this->getAttribute($context["pdt"], "photo", array()))), "html", null, true);
             echo " alt=\"\" height=\"80px\"></td>
               <td>";
-            // line 31
+            // line 32
             echo twig_escape_filter($this->env, $this->getAttribute($context["pdt"], "idProduit", array()), "html", null, true);
             echo "</td>
               <td>";
-            // line 32
+            // line 33
             echo twig_escape_filter($this->env, $this->getAttribute($context["pdt"], "reference", array()), "html", null, true);
             echo "</td>
               <td>";
-            // line 33
+            // line 34
             echo twig_escape_filter($this->env, $this->getAttribute($context["pdt"], "categorie", array()), "html", null, true);
             echo "</td>
               <td>";
-            // line 34
+            // line 35
             echo twig_escape_filter($this->env, $this->getAttribute($context["pdt"], "titre", array()), "html", null, true);
             echo "</td>
               <td>";
-            // line 35
+            // line 36
             echo twig_escape_filter($this->env, $this->getAttribute($context["pdt"], "description", array()), "html", null, true);
             echo "</td>
               <td>";
-            // line 36
+            // line 37
             echo twig_escape_filter($this->env, $this->getAttribute($context["pdt"], "couleur", array()), "html", null, true);
             echo "</td>
               <td>";
-            // line 37
+            // line 38
             echo twig_escape_filter($this->env, $this->getAttribute($context["pdt"], "taille", array()), "html", null, true);
             echo "</td>
               <td>";
-            // line 38
+            // line 39
             echo twig_escape_filter($this->env, $this->getAttribute($context["pdt"], "public", array()), "html", null, true);
             echo "</td>
               <td>";
-            // line 39
+            // line 40
             echo twig_escape_filter($this->env, $this->getAttribute($context["pdt"], "prix", array()), "html", null, true);
             echo " €</td>
               <td>";
-            // line 40
+            // line 41
             echo twig_escape_filter($this->env, $this->getAttribute($context["pdt"], "stock", array()), "html", null, true);
             echo "</td>
               <td><a href=\"";
-            // line 41
+            // line 42
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("produit", array("id" => $this->getAttribute($context["pdt"], "idProduit", array()))), "html", null, true);
             echo "\" target=\"_blank\"><i class=\"far fa-eye\"></i></a></td>
               <td><a href=\"";
-            // line 42
+            // line 43
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("produit_update", array("id" => $this->getAttribute($context["pdt"], "idProduit", array()))), "html", null, true);
             echo "\" target=\"_blank\"><i class=\"far fa-edit\"></i></a></td>
               <td><a href=\"";
-            // line 43
+            // line 44
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("produit_delete", array("id" => $this->getAttribute($context["pdt"], "idProduit", array()))), "html", null, true);
             echo "\" target=\"_blank\"><i class=\"far fa-trash-alt\"></i></a></td>
             </tr>
@@ -160,7 +161,7 @@ class __TwigTemplate_bf328edf91e3a416ad36fe63b379fef0010c58e41067e3da9246b9f536c
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['pdt'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 47
+        // line 48
         echo "        </table>
       </div>
     </div>
@@ -187,7 +188,7 @@ class __TwigTemplate_bf328edf91e3a416ad36fe63b379fef0010c58e41067e3da9246b9f536c
 
     public function getDebugInfo()
     {
-        return array (  164 => 47,  154 => 43,  150 => 42,  146 => 41,  142 => 40,  138 => 39,  134 => 38,  130 => 37,  126 => 36,  122 => 35,  118 => 34,  114 => 33,  110 => 32,  106 => 31,  102 => 30,  98 => 28,  94 => 27,  73 => 9,  68 => 6,  59 => 5,  41 => 3,  11 => 1,);
+        return array (  165 => 48,  155 => 44,  151 => 43,  147 => 42,  143 => 41,  139 => 40,  135 => 39,  131 => 38,  127 => 37,  123 => 36,  119 => 35,  115 => 34,  111 => 33,  107 => 32,  103 => 31,  99 => 29,  95 => 28,  73 => 9,  68 => 6,  59 => 5,  41 => 3,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -213,6 +214,7 @@ class __TwigTemplate_bf328edf91e3a416ad36fe63b379fef0010c58e41067e3da9246b9f536c
         <table id=\"mytable\" class=\"table table-bordred table-striped\">
           <thead>
             <th><input type=\"checkbox\" id=\"checkall\" /></th>
+            <th>Photo</th>
             <th>ID produit</th>
             <th>Référence</th>
             <th>Catégorie</th>

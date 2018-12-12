@@ -2,6 +2,8 @@
 
 namespace BoutiqueBundle\Repository;
 
+use BoutiqueBundle\Entity\Produit;
+
 /**
  * ProduitRepository
  *
@@ -10,4 +12,43 @@ namespace BoutiqueBundle\Repository;
  */
 class ProduitRepository extends \Doctrine\ORM\EntityRepository
 {
+    //function pour recuperer toutes les catégories via QueryBuilder
+    public function findAllCategories()
+    {
+        $em = $this->getEntityManager();
+
+        //Methode 2 : QueryBuilder()
+        //Batir une  requete en PHP:
+        $query = $em->createQueryBuilder();
+        $query
+            ->select('p.categorie')
+            ->distinct(true)
+            ->from(Produit::class, 'p')
+            ->OrderBy('p.categorie', 'ASC');
+
+        $categories = $query->getQuery()->getResult();
+
+        return $query->getQuery()->getResult();
+
+        //Autre méthode d'envoi de data
+        // return $this->getEntityManager()
+        //             ->createQueryBuilder()
+        //             ->select('p.categorie')
+        //             ->distinct(true)
+        //             ->from(Produit::class, 'p')
+        //             ->OrderBy('p.categorie', 'ASC')
+        //             ->getQuery()
+        //             ->getResultat();
+
+    }
+
+    //function pour recuperer toutes les catégories via via CreateQuery
+    public function findAllCategories2()
+    {
+        $em = $this->getEntityManager();
+
+        $query = $em->createQuery("SELECT DISTINCT p.categorie FROM BoutiqueBundle\ENTITY\Produit p ORDER BY p.categorie ASC");
+
+        return $query->getResult();
+    }
 }

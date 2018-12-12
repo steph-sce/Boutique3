@@ -89,7 +89,8 @@ class Membre
      *
      * @ORM\Column(name="statut", type="integer", nullable=false)
      */
-    private $statut;
+    private $statut=0; //valeur par défaut
+    // private $statut;
 
     /**
      * Get idMembre
@@ -102,15 +103,15 @@ class Membre
     }
 
     /**
-     * Set pseudo
+     * Set username
      *
-     * @param string $pseudo
+     * @param string $username
      *
      * @return Membre
      */
-    public function setPseudo($pseudo)
+    public function setUsername($username)
     {
-        $this->pseudo = $pseudo;
+        $this->username = $username;
 
         return $this;
     }
@@ -126,15 +127,15 @@ class Membre
     }
 
     /**
-     * Set mdp
+     * Set password
      *
-     * @param string $mdp
+     * @param string $password
      *
      * @return Membre
      */
-    public function setMdp($mdp)
+    public function setPassword($password)
     {
-        $this->mdp = $mdp;
+        $this->password = $password;
 
         return $this;
     }

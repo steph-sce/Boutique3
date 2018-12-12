@@ -17,21 +17,26 @@
             <th>Date d'enregistrement</th>
             <th>Etat</th>
           </thead>
-          <tbody>
+          {% if commandes %}
             {% for cmd in commandes %}
+              <tbody>
+                <tr>
+                  <td><input type="checkbox" class="checkthis" /></td>
+                  <td>{{ cmd.idCommande }}</td>
+                  <td>{{ cmd.idMembre }}</td>
+                  <td>{{ cmd.montant }}</td>
+                  <td>{{ cmd.dateEnregistrement|date('Y-m-d') }}</td>
+                  <td>{{ cmd.etat }}</td>
+                  <td><a href="{{ path('commande_update', {'id': cmd.idCommande})}}" target="_blank"><i class="far fa-edit"></i></a></td>
+                  <td><a href="{{ path('commande_delete', {'id': cmd.idCommande})}}" target="_blank"><i class="far fa-trash-alt"></i></a></td>
+                </tr>
+              </tbody>
+            {% endfor %}
+          {% else %}
             <tr>
-              <td><input type="checkbox" class="checkthis" /></td>
-              <td>{{ cmd.idCommande }}</td>
-              <td>{{ cmd.idMembre }}</td>
-              <td>{{ cmd.montant }}</td>
-              <td>{{ cmd.dateEnregistrement|date('Y-m-d') }}</td>
-              <td>{{ cmd.etat }}</td>
-              <td><a href="{{ path('commande_update', {'id': cmd.idCommande})}}" target="_blank"><i class="far fa-edit"></i></a></td>
-              <td><a href="{{ path('commande_delete', {'id': cmd.idCommande})}}" target="_blank"><i class="far fa-trash-alt"></i></a></td>
-            </tr>
-          </tbody>
-          {% endfor %}
-
+              <th colspan="7" class="align-center">Aucune commande<th>
+            <tr>
+          {% endif %}
         </table>
       </div>
     </div>

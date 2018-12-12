@@ -3,7 +3,7 @@
 namespace BoutiqueBundle\Controller;
 
 use BoutiqueBundle\Entity\Produit;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -15,12 +15,12 @@ class ProduitController extends Controller
      */
     public function indexAction()
     {
-        $repository = $this->getDoctrine()->getRepository(Produit::class);
+        $repository = $this->get('doctrine')->getRepository(Produit::class);
         $produits = $repository->findAll();
 
         $params = array(
             'produits' => $produits,
-            'references' => $produits,
+            'categorie' => $produits,
             'title' => 'Page d\'accueil',
         );
 
@@ -36,8 +36,20 @@ class ProduitController extends Controller
         $repository = $this->getDoctrine()->getRepository(Produit::class);
         $article = $repository->findBy(['categorie' => $categorie]);
 
+        $em = $this->getDoctrine()->getManager();
+
+        //Methode 1 : CreateQuery()
+        // $categories = $query->getQuery();
+        $categories = $repository->findAllCategories2();
+
+        //Methode 2 : QueryBuilder()
+        //Batir une  requete en PHP:
+
+        // $categories = $repository->findAllCategories();
+
         $params = array(
             'produits' => $article,
+            'categorie' => $categories,
             'title' => 'Categorie: ' . $categorie,
         );
 
